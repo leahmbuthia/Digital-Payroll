@@ -1,0 +1,66 @@
+.container {
+    display: flex;
+    // flex-direction: column;
+    // background-color: red;
+    height: 30vh;
+  }
+  
+  .form-container {
+    background-color: #f5f5f5;
+    // padding-left: -30px;
+    width: 75vw;
+    height: 35%;
+    padding-left: 100px;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .form-img {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .form-img h2 {
+    margin: 0;
+  }
+  
+  .img img {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  #employee-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    padding: 8px;
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  label {
+    width: 100px;
+    margin-right: 10px;
+  }
+  
+  input[type='text'],
+  input[type='email'] {
+    flex: 1;
+    padding: 8px;
+    // border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  input[type='text']:disabled,
+  input[type='email']:disabled {
+    background-color: #f0f0f0;
+    color: #777;
+  }
+  

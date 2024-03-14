@@ -1,0 +1,70 @@
+.timer-container {
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    width: 80vw;
+    height: 90vh;
+    margin: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    // background-color: #fff;
+  .top{
+    display: flex;
+    flex-direction: column;
+    width: 78vw;
+    padding: 20px;
+    // height: 25vh;
+    background-color: #fff;
+  }
+  
+ .attendee{
+    font-size: 20px;
+    font-weight: 900;
+    color: #067255;
+ }
+  
+  .date {
+    display: flex;
+    justify-content: end;
+    // margin-bottom: 10px;
+  }
+  .clock{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  
+  .btn-clockin {
+    margin-bottom: 30px;
+  }
+  
+  .btn-clockin button {
+    padding: 8px 16px;
+    border: none;
+    width: 80px;
+    height: 80px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  
+  .btn-clockin button:hover {
+    background-color: #0056b3;
+  }
+  .btn-clockin span{
+    padding: 20px;
+  }
+  
+  .hours {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .hours span {
+    font-weight: bold;
+  }
+  
+}  

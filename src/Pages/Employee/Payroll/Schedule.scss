@@ -1,0 +1,59 @@
+/* styles.css */
+
+.schedule-container {
+    display: flex;
+    width: 55vw;
+    flex-direction: column;
+    margin: 5px;
+    padding: 5px;
+    
+    h2{
+        color: Black;
+        width: 95%;
+        border-radius: 5px;
+        padding: 5px;
+        background-color: #0abe8e;
+        cursor: pointer;
+       
+  
+        &::after{
+          content: "";
+          width: 0%;
+          height: 3px;
+          background: blue;
+          display: block;
+          // margin: auto;
+          transition: 1.5s;
+          position: relative;
+        }
+  
+        &:hover::after{
+          width: 100%;
+        }
+        }
+  }
+  
+  .schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .schedule-table th,
+  .schedule-table td {
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .schedule-table th {
+    background-color: #f2f2f2;
+  }
+  
+  .schedule-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  
+  .schedule-table tbody tr:hover {
+    background-color: #ddd;
+  }
+  

@@ -1,0 +1,47 @@
+.sidemenu {
+    display: flex;
+    flex-direction: column;
+    text-transform: capitalize;
+    font-size: 12px;
+    .heading {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      p {
+        color: black;
+        font-size: 18px;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+    }
+    .menu-item{
+      display: flex;
+    //   justify-content: center;
+    //   align-items: center;
+      gap: 20px;
+      padding: 10px;
+      height: 40px;
+    //   color: black;
+      text-decoration: none;
+      p{
+        font-size: 16px;
+        
+      }
+    }
+  
+
+    .active {
+      font-weight: bold;
+      color: blue; 
+    
+      &:before {
+        content: '\2022'; 
+        color: blue; 
+        margin-left: -10px;
+        margin-right: 5px;
+      }
+      img {
+        filter: brightness(150%); 
+      }
+    }
+  }

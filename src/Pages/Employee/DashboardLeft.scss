@@ -1,0 +1,65 @@
+.leah{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    width: 80vw;
+    height: 90vh;
+    // background-color: #c02323;
+    .tit{
+        display: flex;
+        flex-direction: row;
+        width: 20vh;
+        justify-content: space-between;
+        .title{
+            display: flex;
+            flex-direction: column;
+            // gap: 20px;
+        }
+    }
+ 
+    h2{
+        color: Black;
+        width: 90%;
+        border-radius: 5px;
+        padding: 5px 0px 5px 5px;
+        background-color: #0abe8e;
+        cursor: pointer;
+       
+  
+        &::after{
+          content: "";
+          width: 0%;
+          height: 3px;
+          background: blue;
+          display: block;
+          // margin: auto;
+          transition: 1.5s;
+          position: relative;
+        }
+  
+        &:hover::after{
+          width: 100%;
+        }
+        }
+    .profile{
+        display: flex;
+        gap: 20px;
+    
+    .profile-details{
+        display: flex;
+        img{
+            width: 70px;
+            height: 70px;
+            margin-right: 30px;
+        }
+    }
+    .list p{
+       padding: 5px;
+    }
+}
+.editform{
+    display: flex;
+    flex-direction: column;
+}
+
+}

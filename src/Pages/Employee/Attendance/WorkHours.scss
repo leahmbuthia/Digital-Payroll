@@ -1,0 +1,52 @@
+.work-hours-container {
+    margin: 20px auto;
+    width: 75vw;
+  }
+  DatePicker{
+    display: flex;
+    justify-content: end;
+  }
+  
+  .table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .row {
+    display: table-row;
+  }
+  
+  .header {
+    font-weight: bold;
+  }
+  
+  .cell {
+    display: table-cell;
+    padding: 8px;
+    border: 1px solid black;
+  }
+  
+  .cell input[type="time"],
+  .cell span {
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .cell input[type="time"] {
+    padding: 6px;
+  }
+  
+  .cell span {
+    display: block;
+  }
+  
+  .cell input[type="time"]:focus {
+    outline: none;
+    border: 1px solid #007bff;
+  }
+  
+  .cell span {
+    padding-top: 6px;
+  }
+  

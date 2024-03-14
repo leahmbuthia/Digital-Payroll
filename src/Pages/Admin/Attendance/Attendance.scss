@@ -1,0 +1,70 @@
+.main-adminattendance{
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 90vh;
+    .admin-card{
+      display: flex;
+    
+    .card {
+      display: flex;
+      flex-direction: column;
+        width: 25vw;
+        height: 20vh;
+        margin: 8px 0px 1px 8px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+      
+      .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .img{
+            display: flex;
+            justify-content: space-between;
+
+            img{
+            width: 70px;
+            padding:10px ;   
+            }
+            p{
+                padding: 10px;
+            }
+        }
+      }
+      
+      .title {
+       
+        color: Black;
+        width: 95%;
+        border-radius: 5px;
+        padding: 5px 0px 5px 5px;
+        background-color: #0abe8e;
+        cursor: pointer;
+       
+  
+        &::after{
+          content: "";
+          width: 0%;
+          height: 3px;
+          background: blue;
+          display: block;
+          // margin: auto;
+          transition: 1.5s;
+          position: relative;
+        }
+  
+        &:hover::after{
+          width: 100%;
+        }
+      }
+      
+      .employee-number {
+        font-size: 40px;
+        font-weight: bold;
+        color: #333;
+      }
+}}
+  

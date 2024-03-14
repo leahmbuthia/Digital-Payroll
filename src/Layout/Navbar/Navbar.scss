@@ -1,0 +1,39 @@
+.nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+    height: 8vh;
+    width: 97%; 
+
+    .logo{
+        display: flex;
+        align-items: center;
+        img{
+            width: 100px;
+            height: 8vh;
+            
+        }
+        p{
+            font-size: 18px;
+            font-weight: bold;
+        }
+    } 
+    .profile{
+        display: flex;
+        justify-content: end;
+      
+   
+    .profile img{
+        width: 40px;
+        height: 40px;
+        border: 50%;
+        margin-right: 10px;
+    } 
+    .profile img:last-child {
+        // display: flex;
+        // align-items: center;
+        width: 30px; /* Adjust dropdown size as needed */
+        height: auto;
+      }
+    }
+}

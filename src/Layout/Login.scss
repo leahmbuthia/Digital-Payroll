@@ -1,0 +1,155 @@
+.login {
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+   
+  
+    .card {
+      width: 70%;
+      display: flex;
+      background-color: white;
+      border-radius: 10px;
+      height: 85%;
+  
+      .left {
+        flex: 1;
+        background: linear-gradient(rgba(39, 11, 96, 0.5), rgba(39, 11, 96, 0.5)),
+          url("https://images.pexels.com/photos/3228727/pexels-photo-3228727.jpeg?auto=compress&cs=tinysrgb&w=1600")
+            center;
+        background-size: cover;
+        padding: 20px 30px 0 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 45px;
+        color: white;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+  
+        h1 {
+          font-size: 70px;
+          padding-top: 20px;
+        }
+        
+  
+        span {
+          font-size: 20px;
+        }
+      }
+  
+      .right {
+        flex: 1;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        gap: 1rem;
+        // height: 80vh;
+  
+      
+        h1 {
+          color: #555;
+          cursor: pointer;
+          padding-left: 10px;
+         
+         
+    
+          &::after{
+            content: "";
+            width: 0%;
+            height: 3px;
+            background: blue;
+            display: block;
+            // margin: auto;
+            transition: 1.5s;
+            position: relative;
+          }
+    
+          &:hover::after{
+            width: 80%;
+          }
+          }
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+          padding: 0 5px;
+          .input-card1{
+            width: 95%;
+            height: 100%;
+            border-radius: 12px;
+            padding: 30px 10px 0 10px;
+            &:hover{
+              box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+            }
+    
+            }
+            .input-card2{
+                width: 95%;
+                height: 100%;
+                border-radius: 12px;
+                padding: 30px 10px 0 10px;
+                justify-content: space-between;
+                &:hover{
+                  box-shadow: 0 0 20px 0 rgba(0,0,0,0.2);
+                }
+        label{
+            margin-right: 200px;
+            // flex-direction: column;
+        }
+        button{
+            color: blue;
+            border: none;
+            cursor: pointer;
+            background-color: white;
+
+        }
+                }
+
+            input {
+            border: none;
+            border-bottom: 1px solid lightgray;
+            padding: 20px 10px;
+            width: 95%;
+            margin: auto;
+            height: 5vh;
+          
+              
+            }
+          }
+            .btn{
+             width: 100%;
+             padding-top: 50px;
+            align-items: center;
+            justify-content: center;
+            
+
+            button {
+              width: 50%;
+              padding: 10px ;
+            //   padding-left: 65px;
+            align-self: center;
+              border: none;
+              background-color: #b5b3e5;
+              color: white;
+              font-weight: bold;
+              cursor: pointer;
+              transition: 1s;
+              border-radius: 10px;
+              
+    
+              &:hover{
+                background-color: blue;
+              }
+           
+            }
+          
+           
+          }
+    
+        }
+      }
+    }
+  
