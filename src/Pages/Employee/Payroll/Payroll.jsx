@@ -37,7 +37,7 @@ const Payroll = () => {
         <h2>Your Pay Details</h2>
         <label className="label">
           Gross Salary:
-          <input type="number" value={grossSalary} onChange={(e) => setGrossSalary(e.target.value)} />
+          <input type="number" value={80000} readOnly />
         </label>
         <br />
         <label className="label">

@@ -1,65 +1,78 @@
-.leah{
+.container1 {
     display: flex;
     flex-direction: column;
-    padding: 10px;
-    width: 80vw;
-    height: 90vh;
-    // background-color: #c02323;
-    .tit{
-        display: flex;
-        flex-direction: row;
-        width: 20vh;
-        justify-content: space-between;
-        .title{
-            display: flex;
-            flex-direction: column;
-            // gap: 20px;
-        }
-    }
- 
-    h2{
-        color: Black;
-        width: 90%;
-        border-radius: 5px;
-        padding: 5px 0px 5px 5px;
-        background-color: #0abe8e;
-        cursor: pointer;
-       
+    height: 30vh;
+  }
   
-        &::after{
-          content: "";
-          width: 0%;
-          height: 3px;
-          background: blue;
-          display: block;
-          // margin: auto;
-          transition: 1.5s;
-          position: relative;
-        }
-  
-        &:hover::after{
-          width: 100%;
-        }
-        }
-    .profile{
-        display: flex;
-        gap: 20px;
-    
-    .profile-details{
-        display: flex;
-        img{
-            width: 70px;
-            height: 70px;
-            margin-right: 30px;
-        }
-    }
-    .list p{
-       padding: 5px;
-    }
-}
-.editform{
+  .form-container1 {
+   
+    // padding-left: -30px;
+    width: 75vw;
+    height: 35%;
+    padding-left: 100px;
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  .profileedit{
     display: flex;
-    flex-direction: column;
-}
+    height: 10vh;
+    img{
+        width: 5vw;
+    }
+    .edit{
+        height: 15px;
+        width: 15px;
+        padding: 55px 0px;
+    }
 
-}
+  }
+  
+  .form-img {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .form-img h2 {
+    margin: 0;
+  }
+  
+  .img img {
+    width: 30px;
+    height: auto;
+    cursor: pointer;
+  }
+  
+  #employee-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    padding: 8px;
+  }
+  
+  .form-group {
+    display: flex;
+    align-items: center;
+  }
+  
+  label {
+    width: 100px;
+    margin-right: 10px;
+  }
+  
+  input[type='text'],
+  input[type='email'] {
+    flex: 1;
+    padding: 8px;
+    // border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  input[type='text']:disabled,
+  input[type='email']:disabled {
+    background-color: #f0f0f0;
+    color: #777;
+  }
+  

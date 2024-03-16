@@ -5,27 +5,21 @@ import Avator from '../../assets/Avatar.png'
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
   const [userInput, setUserInput] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [modalOpen, setModalOpen] = useState(false);
-  const profilesPerPage = 10;
+ 
+ 
 
   const handleChange = (e) => {
 
     setUserInput(e.target.value);
   };
-
-  // const handleAddUser = () => {
-  //   // Add user logic here
-  //   console.log('Adding user:', userInput);
-  //   setUserInput('');
-  //   // history.push('/add');
-  // };
-  const handleSeeMore = (userData) => {
-    setSelectedUser(userData);
-    setShowModal(true);
+  const handleSubmit = () => {
+    navigate("/admin/AdminAdd"); 
   };
+  const handleSeeMore =() =>{
+    navigate("/admin/seemore");
+  }
+ 
   return (
     <div className="profile-list">
       <div className="container">
@@ -37,9 +31,9 @@ const Dashboard = () => {
             onChange={handleChange}
             className="search-input"
           />
-          <button onClick={()=> navigate("/add")} className="add-user-button">
-            Add Employee
-          </button>
+      <button onClick={handleSubmit} className="add-user-button">
+      Add Employee
+    </button>
         </div>
       </div>
       <div className="lists">
@@ -61,9 +55,7 @@ const Dashboard = () => {
                     <span>345D</span>
                     <span>leahnyambura@gmail.com</span>
                     <span>Manager</span>
-                    <span><button>See More</button></span>
-                    {/* <span><GoDotFill /> Active</span> */}
-                    {/* <button><HiDotsHorizontal /></button> */}
+                    <span><button onClick={handleSeeMore}>See More</button></span>
                 </div>
                 <div className="list">
                      <span>
@@ -73,9 +65,8 @@ const Dashboard = () => {
                     <span>345D</span>
                     <span>leahnyambura@gmail.com</span>
                     <span>Manager</span>
-                    <span><button>See More</button></span>
-                    {/* <span><GoDotFill /> Active</span> */}
-                    {/* <button><HiDotsHorizontal /></button> */}
+                    <span><button onClick={handleSeeMore}>See More</button></span>
+                  
                 </div>
                 <div className="list">
                      <span>
@@ -85,15 +76,10 @@ const Dashboard = () => {
                     <span>345D</span>
                     <span>leahnyambura@gmail.com</span>
                     <span>Manager</span>
-                    <span><button>See More</button></span>
-                    {/* <span><GoDotFill /> Active</span> */}
-                    {/* <button><HiDotsHorizontal /></button> */}
+                    <span><button onClick={handleSeeMore}>See More</button></span>
+                   
                 </div>
-            {/* </div> */}
-
-     
-      {/* Pagination controls */}
-
+                {/* <Modal isOpen={modalOpen} onClose={closeModal} /> */}
     </div>
   );
 };

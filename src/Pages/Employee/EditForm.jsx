@@ -1,6 +1,7 @@
 import React from "react";
 import "./EditForm.scss"
 import edit from "../../assets/edit-512.webp";
+import del from "../../assets/trash-bin.webp"
 // import delete  from "../../assets/trash-bin.webp"
 // import del from "../../assets/trash-bin.webp"
 
@@ -86,6 +87,7 @@ const EditForm = () => {
               disabled
             ></input>
           </div>
+          
         </form>
       </div>
     </div>

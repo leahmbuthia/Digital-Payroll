@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom';
 import dashboard from '../assets/calendar.png'
 import Attendance from '../assets/briefcase.png'
 import Payroll from '../assets/Group.png'
@@ -12,23 +13,23 @@ const SideMenu = () => {
         {
           name: "Dashboard",
           icon: dashboard,
-          path: "/dashboard",
+          path: "/main",
         },
         {
           name: "Attendance",
           icon: Attendance,
-        //   path: "/friends",
+          path: "/attendance",
         },
         {
           name: "Payroll",
           icon: Payroll,
           path: "/payroll",
         },
-        {
-          name: "Schedule",
-          icon: Schedule,
-          path: "/schedule",
-        },
+        // {
+        //   name: "Schedule",
+        //   icon: Payroll,
+        //   path: "/admin/schedule",
+        // },
      
       ];
   return (
@@ -38,12 +39,17 @@ const SideMenu = () => {
     </div>
     <div className="menu-down">
     {menuItems &&
-        menuItems.map((item, index) => (
-          <div key={index} className="menu-item">
-            <img src={item.icon} alt={item.name} />
-            <p>{item.name}</p>
-          </div>
-        ))}
+          menuItems.map((item) => (
+            <NavLink
+              key={item.path}
+              to={item.path}
+              className={({ isActive }) => (isActive ? "menu-item active" : "menu-item")}
+
+            >
+              <img src={item.icon} alt={item.name} />
+              <p>{item.name}</p>
+            </NavLink>
+          ))}
 
     </div>
     

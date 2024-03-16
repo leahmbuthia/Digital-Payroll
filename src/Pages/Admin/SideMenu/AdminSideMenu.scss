@@ -1,9 +1,9 @@
-.sidemenu{
+.sidemenu1{
     display: flex;
     flex-direction: column;
     text-transform: capitalize;
     font-size: 12px;
-    .heading {
+    .heading1 {
       display: flex;
       justify-content: flex-start;
       align-items: flex-start;
@@ -14,7 +14,7 @@
         text-transform: uppercase;
       }
     }
-    .menu-item{
+    .menu-item1{
       display: flex;
     //   justify-content: center;
     //   align-items: center;
@@ -30,7 +30,7 @@
     }
   
 
-    .active {
+    .active1 {
       font-weight: bold;
       color: blue; 
     

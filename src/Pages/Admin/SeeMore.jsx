@@ -1,43 +1,117 @@
-import React from 'react'
+import React, { useRef } from 'react';
 import './SeeMore.scss'
+import Avator from '../../../src/assets/Avatar.png'
+import edit from "../../assets/edit-512.webp";
+import del from "../../assets/del.png"
 
 const SeeMore = () => {
-    return (
-        <div className="leah">
-          <div className="tit">
-            <div className="title">
-              <h2>Profile details</h2>
-              <div className="profile">
-                {/* <h2>Prfile details</h2> */}
-                <div className="profile-details">
-                  <img src={Avator} alt="" />
-                </div>
-    
-                <div className="list">
-                  <p>
-                    <strong>First Name:</strong> Leah
-                  </p>
-                  <p>
-                    <strong>Last Name:</strong> Nyambura
-                  </p>
-                  <p>
-                    <strong>Address:</strong> 214 South Kinangop
-                  </p>
-                  <p>
-                    <strong>Date of Birth:</strong> 10/05/2000
-                  </p>
-                  <p>
-                    <strong>Email:</strong> leah@gmail.com
-                  </p>
-                  <p>
-                    <strong>Phone:</strong> +254 705999
-                  </p>
-                  <p>
-                    <strong>Gender:</strong> Female
-                  </p>
-                </div>
-              </div>
+  const fileInputRef = useRef(null);
+
+  const handleEditClick = () => {
+    fileInputRef.current.click();
+  };
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    // Do something with the selected file, such as uploading or displaying preview
+  };
+
+
+      return (
+        <div className="container1">
+          <div class="form-container1">
+            <div className="profileedit">
+          <img src={Avator} alt="" />
+          <img src={edit} alt="" className='edit'/>
+          </div>
+            <div className="form-img">
+
+            <h2>Employee Details</h2>
+            
+            <div className="img">
+            <img src={edit} alt="" />
+            <img src={del} alt="" />
             </div>
+            </div>
+            <form id="employee-form">
+              <div class="form-group">
+                <label for="first-name">First Name:</label>
+                <input
+                  type="text"
+                  id="first-name"
+                  name="first-name"
+                  value="Leah"
+                  disabled></input>
+              </div>
+              <div class="form-group">
+                <label for="last-name">Last Name:</label>
+                <input
+                  type="text"
+                  id="last-name"
+                  name="last-name"
+                  value="Nyambura"
+                  disabled
+                ></input>
+              </div>
+              <div class="form-group">
+                <label for="address">Address:</label>
+                <input
+                  type="text"
+                  id="address"
+                  name="address"
+                  value="214 South Kinangop"
+                  disabled
+                ></input>
+              </div>
+              <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input
+                  type="text"
+                  id="dob"
+                  name="dob"
+                  value="10/05/2000"
+                  disabled
+                ></input>
+              </div>
+              <div class="form-group">
+                <label for="email">Email:</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value="leah@gmail.com"
+                  disabled
+                ></input>
+              </div>
+              <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input
+                  type="text"
+                  id="phone"
+                  name="phone"
+                  value="+254 705999"
+                  disabled
+                ></input>
+              </div>
+              <div class="form-group">
+                <label for="gender">Gender:</label>
+                <input
+                  type="text"
+                  id="gender"
+                  name="gender"
+                  value="Female"
+                  disabled
+                ></input>
+              </div>
+              <input
+          type="file"
+          accept="image/*"
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          onChange={handleImageChange}
+        />
+            </form>
+
           </div>
         </div>
       );
