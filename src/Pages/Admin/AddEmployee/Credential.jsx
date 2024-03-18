@@ -27,7 +27,6 @@ const Credential = () => {
       employeeID,
       email,
       password,
-      department,
       position,
       grossSalary
     });

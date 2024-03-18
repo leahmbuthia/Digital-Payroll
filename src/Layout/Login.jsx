@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Login.scss";
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import { FaAnglesRight, FaAddressCard, FaLock } from "react-icons/fa6";
+import { ToasterContainer, SuccessToast, ErrorToast, LoadingToast } from "../../src/Toaster";
 
 const Login = () => {
 
@@ -14,6 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      LoadingToast(true);
       const res = await axios.post('http://localhost:8800/api/employee/auth/login', values);
       console.log("data",res.data);
       localStorage.setItem('isLoggedIn', 'true');
@@ -30,11 +33,13 @@ const Login = () => {
         }
         localStorage.setItem('isLoggedIn', 'true');
       } else {
-        alert("User Not record found");
+        ErrorToast("User Not found");
       }
       console.log(res);
+      LoadingToast(false);
     } catch (err) {
-      console.log(err);
+      ErrorToast("An error occurred. Please try again."); // Display error toast
+      LoadingToast(false); // Dismiss loading toast
     }
   };
 
@@ -61,7 +66,7 @@ const Login = () => {
             </div>
             <div className="input-card2">
               <label htmlFor="password">Password:</label>
-              <button type="button" onClick={forgotPassword}>Reset Password</button>
+              {/* <button type="button" onClick={forgotPassword}>Reset Password</button> */}
               <input type="password" placeholder='Enter your password' value={values.Password} onChange={(e) => setValues({ ...values, Password: e.target.value })} />
             </div>
             <div className="btn">
@@ -70,6 +75,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <ToasterContainer /> {/* Render the toaster container */} 
     </div>
   );
 };
