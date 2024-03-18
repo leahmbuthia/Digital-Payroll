@@ -1,84 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.scss";
 import { useNavigate } from 'react-router-dom';
-import { useState } from "react";
-
+import axios from "axios";
 
 const Login = () => {
 
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [values, setValues] = useState({
+    Email: '',
+    Password: ''
+  });
   const navigate = useNavigate();
 
-  const users = [
-      {
-          "id": "1",
-          "role": "Admin",
-          "first_name": "Leah Nyambura",
-          "last_name": "Nyambura",
-          "email": "admin@payroll.com",
-          "password": "Admin"
-      },
-      {
-          "id": "2",
-          "role": "employee",
-          "first_name": "Leah",
-          "last_name": "Nyambura",
-          "email": "leah@payroll.com",
-          "password": "123456"
-      },
-     
-  ];
-
-  const handleLogin = () => {
-
-      const user = users.find(user => user.email === email && user.password === password);
-
-      if (user) {
-          localStorage.setItem('loggedInUser', JSON.stringify({ email,password }));
-
-          if (user.role.toLowerCase() === 'admin') {
-              navigate('/admin');
-          } else if (user.role.toLowerCase() === 'employee') {
-              navigate('/main');
-          } else {
-              alert('You are not assigned any role, please contact the support center');
-          }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post('http://localhost:8800/api/employee/auth/login', values);
+      console.log("data",res.data);
+      if (res.data) {
+        navigate('/main');
       } else {
-          alert('Invalid email or password');
+        alert("No record found");
       }
+      console.log(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const forgotPassword = () => {
-      alert('Please contact the support center to reset your logins!')
-  }
+    alert('Please contact the support center to reset your logins!');
+  };
+
   return (
     <div className="login">
       <div className="cardd">
         <div className="left">
           <h1>Digital Payroll</h1>
           <span>Your all in one people solution Seamlessly manage your employees, from onboarding to retirement with Digital Payroll.</span>
-          <p>Welcome  back! Please login to your account.</p>
-      
+          <p>Welcome back! Please login to your account.</p>
         </div>
         <div className="right">
           <div className="login-header">
-          <h1>Login to Digital Payroll</h1>
-          <p>Enter your email and password to continue</p>
+            <h1>Login to Digital Payroll</h1>
+            <p>Enter your email and password to continue</p>
           </div>
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSubmit}>
             <div className="input-card1">
-            <input type="email" placeholder='Enter your email address' value={email} onChange={(e) => setEmail(e.target.value)} />
+              <input type="email" placeholder='Enter your email address' value={values.Email} onChange={(e) => setValues({ ...values, Email: e.target.value })} />
             </div>
             <div className="input-card2">
               <label htmlFor="password">Password:</label>
-              <button type="button">Reset Password</button>
-              <input type="password" placeholder='Enter your password' value={password} onChange={(e) => setPassword(e.target.value)} />
-              {/* <input type="password" id="password" placeholder="Password" /> */}
+              <button type="button" onClick={forgotPassword}>Reset Password</button>
+              <input type="password" placeholder='Enter your password' value={values.Password} onChange={(e) => setValues({ ...values, Password: e.target.value })} />
             </div>
             <div className="btn">
               <button type="submit">Login</button>
-              
             </div>
           </form>
         </div>
