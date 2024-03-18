@@ -21,6 +21,7 @@
     .profile{
         display: flex;
         justify-content: end;
+        gap: 20px;
       
    
     .profile img{
@@ -29,6 +30,10 @@
         border: 50%;
         margin-right: 10px;
     } 
+    // .logout{
+    //     width: 30px;
+    //     height: 30px;
+    // }
     .profile img:last-child {
         display: flex;
         align-items: center;

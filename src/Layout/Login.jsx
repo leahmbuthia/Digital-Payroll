@@ -16,10 +16,21 @@ const Login = () => {
     try {
       const res = await axios.post('http://localhost:8800/api/employee/auth/login', values);
       console.log("data",res.data);
-      if (res.data) {
+      localStorage.setItem('isLoggedIn', 'true');
+      if (res.data.loggedInUser.employee) {
+        // const { employee, token } = res.data.loggedInUser;
+        if(!res.data.loggedInUser.employee.Role){
+          alert("Please consult the administrator to assign a role.")
+          return
+        }
+        if(res.data.loggedInUser.employee.Role === "user"){
         navigate('/main');
+        }else if(res.data.loggedInUser.employee.Role === "admin"){
+          navigate('/admin');
+        }
+        localStorage.setItem('isLoggedIn', 'true');
       } else {
-        alert("No record found");
+        alert("User Not record found");
       }
       console.log(res);
     } catch (err) {
