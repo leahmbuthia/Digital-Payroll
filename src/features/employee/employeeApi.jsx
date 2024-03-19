@@ -9,8 +9,9 @@ export const employeeApi = createApi({
       query: () => "employee",
       providesTags: ["Employee"],
     }),
+
     getEmployee: builder.query({
-      query: (EmployeeID) => `employee/${EmployeeID}`,
+      query: (employee) => `employee/$EmployeeID`,
       providesTags: ["Employee"],
     }),
     addEmployee: builder.mutation({
