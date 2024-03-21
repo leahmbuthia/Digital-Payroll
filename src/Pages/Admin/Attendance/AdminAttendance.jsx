@@ -2,6 +2,7 @@ import React from 'react'
 import "./Attendance.scss"
 import Employee from '../../../../src/assets/images.png'
 import AttendanceGraph from './AttendanceGraph'
+import AttendanceEmployee from './AttendanceEmployee'
 
 
 
@@ -42,9 +43,13 @@ const AdminAttendance = () => {
       </div>
     </div>
     </div>
-    <div className="graph">
-      <AttendanceGraph/>
+   
+    <div className="AttendanceEmployee">
+      <AttendanceEmployee/>
     </div>
+    {/* <div className="graph">
+      <AttendanceGraph/>
+    </div> */}
     </div>
   )
 }

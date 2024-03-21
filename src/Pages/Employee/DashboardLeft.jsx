@@ -1,88 +1,107 @@
 import React, { useState, useEffect } from "react";
 import Avator from "../../assets/Avatar.png";
+import edit from "../../assets/edit-512.webp";
+import del from "../../assets/del.png";
 import "./DashboardLeft.scss";
-import { useGetEmployeeQuery } from "../../features/employee/employeeApi"; // Import the individual employee query
-import {
-  LoadingToast,
-  ErrorToast,
-  ToasterContainer,
-} from "../../Toaster"; // Import toaster components
+import { createPortal } from 'react-dom';
+import { ToasterContainer } from "../../Toaster"; // Import toaster components
+import { useGetEmployeeQuery } from "../../features/employee/employeeApi";
+import UpdateEmployeeModal from "../Admin/UpdateEmployeeModal";
 
-const DashboardLeft = () => {
+const DashboardLeft = (employee) => {
   const [userInput, setUserInput] = useState(""); // State to hold user input for search
   const [loggedInUser, setLoggedInUser] = useState(null); // State to hold the logged-in user's details
 
-  // Define logged-in user ID
-  const loggedInUserID = {EmployeeID}; // Replace this with the actual logged-in user ID
+  const [showEditModal , setEditShowModal] =useState(false);
+
+  // const { data: employees = [], isLoading, isError } = useGetEmployeeQuery();
+  useEffect(() => {
+    // Retrieve logged-in employee data from local storage
+    const loggedInEmployeeData = JSON.parse(
+      localStorage.getItem("loggedInEmployee")
+    );
+    if (loggedInEmployeeData) {
+      setLoggedInUser(loggedInEmployeeData);
+    }
+    // console.log(loggedInEmployeeData);
+  }, []);
 
   const handleChange = (e) => {
     setUserInput(e.target.value);
   };
+   
+  const handleEdit =(employee) =>{
 
-  // Fetch the details of the logged-in user
-  const { data: loggedInUserData, isLoading, isError } = useGetEmployeeQuery(loggedInUserID);
-
-  useEffect(() => {
-    if (loggedInUserData) {
-      setLoggedInUser(loggedInUserData);
-    }
-  }, [loggedInUserData]);
-
+    setLoggedInUser(employee);
+    setEditShowModal(true);
+  }
   return (
     <>
       <ToasterContainer /> {/* Render ToasterContainer */}
-      <div className="profile-list">
-        <div className="container">
-          <div className="search-container">
-            <input
-              type="text"
-              placeholder="Search"
-              value={userInput}
-              onChange={handleChange}
-              className="search-input"
-            />
+      <div className="leah">
+        <div className="topper">
+          <div className="tit">
+            <h2 className="title">Profile Details</h2>
+          </div>
+          <div className="details-img">
+            <img src={edit} alt="" onClick={() => handleEdit(employee)} />
           </div>
         </div>
-        <div className="lists">
-          <ul>
-            <li>Avatar</li>
-            <li>Name</li>
-            <li>Employee ID</li>
-            <li>Email</li>
-            <li>Position</li>
-            <li>Gender</li>
-            <li>Schedule</li>
-          </ul>
-        </div>
-
-        {isLoading ? (
-          <div>
-            {LoadingToast()} {/* Display loading toast */}
-            Loading...
-          </div>
-        ) : isError ? (
-          <div>
-            {ErrorToast("Error occurred while fetching data.")}{" "}
-            {/* Display error toast */}
-            Error occurred while fetching data.
-          </div>
-        ) : (
-          // Render the details of the logged-in user
-          loggedInUser && (
-            <div className="list" key={loggedInUser.EmployeeID}>
-              <span>
-                <img src={Avator} alt="Avatar" />
-              </span>
-              <span>{loggedInUser.FirstName} {loggedInUser.LastName}</span>
-              <span>{loggedInUser.EmployeeID}</span>
-              <span>{loggedInUser.Email}</span>
-              <span>{loggedInUser.Position}</span>
-              <span>{loggedInUser.Gender}</span>
-              <span>{loggedInUser.Schedule}</span>
+        <div className="profile">
+          {loggedInUser && (
+            <div className="profile-details list" key={loggedInUser.EmployeeID}>
+              <img src={Avator} alt="Avatar" />
+              <div className="modal-Details">
+                <div className="first-details">
+                  <div className="employee-inputs">
+                    <strong>Employee ID:</strong> {loggedInUser.EmployeeID}
+                  </div>
+                  <div>
+                    <strong>FirstName:</strong> {loggedInUser.FirstName}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>LastName:</strong> {loggedInUser.LastName}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Address:</strong> {loggedInUser.Address}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>DOB:</strong> {loggedInUser.DOB}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Email:</strong> {loggedInUser.Email}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Phone NO:</strong> {loggedInUser.PhoneNo}
+                  </div>
+                </div>
+                <div className="employee-detail">
+                  <div className="employee-inputs">
+                    <strong>Gender:</strong> {loggedInUser.Gender}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Position:</strong> {loggedInUser.Position}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Schedule:</strong> {loggedInUser.Schedule}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Role:</strong> {loggedInUser.Role}
+                  </div>
+                </div>
+              </div>
             </div>
-          )
-        )}
+          )}
+        </div>
       </div>
+      <div className="modal-container">
+        {
+          showEditModal && createPortal(
+            <UpdateEmployeeModal setShowModal={setEditShowModal} employee={employee} />,
+            document.body
+          )
+        }
+    </div>
     </>
   );
 };

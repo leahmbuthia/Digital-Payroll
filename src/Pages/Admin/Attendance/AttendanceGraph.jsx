@@ -2,6 +2,7 @@ import React from 'react'
 import { UserData } from '../../../Data';
 import { useState } from 'react';
 import Graph from './Graph';
+import './AttendanceGraph.scss'
 
 const AttendanceGraph = ( ) => {
   const [userData, setUserData] = useState({

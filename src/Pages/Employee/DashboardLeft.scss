@@ -5,17 +5,35 @@
     width: 80vw;
     height: 90vh;
     // background-color: #c02323;
+    .topper{
+        display: flex;
+        width: 93%;
+        // border: 2px solid;
+        justify-content: space-between;
+        padding: 5px;
+
     .tit{
         display: flex;
         flex-direction: row;
-        width: 20vh;
-        justify-content: space-between;
+        width: 50vh;
+        // justify-content: space-between;
+        // border: 1px solid blue;
         .title{
             display: flex;
             flex-direction: column;
             // gap: 20px;
         }
     }
+    .details-img{
+        display: flex;
+        // justify-content: space-between;
+        img{
+            width: 45px;
+            height: 45px;
+            padding-top: 18px;
+        }
+    }
+}
  
     h2{
         color: Black;

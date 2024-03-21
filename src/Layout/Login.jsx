@@ -18,10 +18,10 @@ const Login = () => {
     try {
       LoadingToast(true);
       const res = await axios.post('http://localhost:8800/api/employee/auth/login', values);
-      console.log("data",res.data);
-      localStorage.setItem('isLoggedIn', 'true');
+      // console.log("data",res.data);
+      // localStorage.setItem('isLoggedIn', 'true');
       if (res.data.loggedInUser.employee) {
-        // const { employee, token } = res.data.loggedInUser;
+        const { employee, token } = res.data.loggedInUser;
         if(!res.data.loggedInUser.employee.Role){
           alert("Please consult the administrator to assign a role.")
           return
@@ -32,6 +32,19 @@ const Login = () => {
           navigate('/admin');
         }
         localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('token', token);
+        localStorage.setItem('loggedInEmployee', JSON.stringify(employee));
+        localStorage.setItem('firstName', employee.FirstName);
+        localStorage.setItem('lastName', employee.LastName);
+        localStorage.setItem('Address', employee.Address);
+        localStorage.setItem('DOB', employee.DOB);
+        localStorage.setItem('Email', employee.Email);
+        localStorage.setItem('Gender', employee.Gender);
+        localStorage.setItem('Position', employee.Position);
+        localStorage.setItem('Password', employee.Password);
+        localStorage.setItem('PhoneNo', employee.PhoneNo);
+        localStorage.setItem('Schedule', employee.Schedule);
+        // localStorage.setItem('isLoggedIn', 'true');
       } else {
         ErrorToast("User Not found");
       }

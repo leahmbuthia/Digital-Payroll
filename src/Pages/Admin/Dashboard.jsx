@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.scss";
+import { createPortal } from 'react-dom';
 import Avator from "../../assets/Avatar.png";
 import edit from "../../assets/edit-512.webp";
 import del from "../../assets/del.png";
@@ -15,23 +16,31 @@ import {
   LoadingToast,
   ToasterContainer,
 } from "../../Toaster";
+import UpdateEmployeeModal from "./UpdateEmployeeModal";
 // import Avator from '../../assets/Avatar.png'
 
-const Dashboard = () => {
+const Dashboard = (employee) => {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState("");
-  const [employeeID, setEmployeeID] = useState(null);
-  const [showModal, setShowModal] = useState(false); // State for managing modal visibility
+  const [employeeID, setEmployeeID] = useState(null);// State for managing modal visibility
   const [selectedEmployee, setSelectedEmployee] = useState(null); // State to hold the selected employee data
 
+  const [showEditModal , setEditShowModal] =useState(false);
+  //fetch all employee from the database
   const { data: employees = [], isLoading, isError } = useGetEmployeesQuery();
-  const { mutate: deleteEmployee } = useDeleteEmployeeMutation();
+  //delete Employeee
+  const [deleteEmployee]   = useDeleteEmployeeMutation();
+
+  const [showModal, setShowModal] = useState(false);
+
 
   const handleChange = (e) => {
     setUserInput(e.target.value);
   };
 
   const handleSubmit = () => {
+    navigate("/admin/AdminAdd"); 
+    // navigate("/admin/AdminAdd");
     SuccessToast("Employee added successfully!");
   };
 
@@ -45,17 +54,30 @@ const Dashboard = () => {
     setShowModal(false);
   };
 
-  const handleDelete = async (employeeID) => {
+  const handleDelete = async (EmployeeID) => {
+    LoadingToast(); // Show loading toast before calling the mutation
     try {
-      await deleteEmployee(employeeID);
-      SuccessToast("Employee deleted successfully!");
+      const response = await deleteEmployee(EmployeeID).unwrap();
+      console.log(EmployeeID);
+      if (response.error) {
+        ErrorToast(response.error);
+      } else {
+        SuccessToast(response.message);
+      }
     } catch (error) {
       ErrorToast("Error occurred while deleting employee.");
     }
+    LoadingToast(false); // Hide loading toast after the mutation is complete
   };
+  
+  const handleEdit =(employee) =>{
+
+    setSelectedEmployee(employee);
+    setEditShowModal(true);
+  }
 
   return (
-    <div className="Dashboard-Container">
+    <div className="Dashboard-Container" >
       <ToasterContainer />
       <div className="profile-list">
         <div className="container">
@@ -111,8 +133,9 @@ const Dashboard = () => {
                   </button>
                 </span>
                 <div className="img-del-edit">
-            <img src={edit} alt="" />
-            <img src={del} alt="" onClick={() => handleDelete(employee.EmployeeID)} />
+            <img src={edit} alt="" onClick={() => handleEdit(employee)}/> 
+
+            <img src={del} alt="" onClick= { ()=> handleDelete(employee.EmployeeID)} />
             </div>
               </div>
             ))}
@@ -179,6 +202,15 @@ const Dashboard = () => {
           </div>
         </div>
       )}
+
+  <div className="modal-container">
+        {
+          showEditModal && createPortal(
+            <UpdateEmployeeModal setShowModal={setEditShowModal} employee={selectedEmployee} />,
+            document.body
+          )
+        }
+    </div>
     </div>
   );
 };
