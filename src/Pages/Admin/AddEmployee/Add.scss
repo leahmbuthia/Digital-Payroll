@@ -4,11 +4,13 @@
   align-items: center;
   width: 80vw;
   height: 90vh;
-  border: 4px solid #007bff;
+  background-color: grey;
+  // border: 4px solid #007bff;
 
   .cont {
     width: 100%;
     padding: 20px;
+    font-size: 20px;
     box-sizing: border-box;
 
     h2 {
@@ -20,10 +22,10 @@
 
       .formSubmit {
         display: flex;
-        flex-direction: column;
+        // flex-direction: column;
 
         .form-inputs {
-          display: flex;
+          // display: flex;
           gap: 20px;
           justify-content: space-between;
 

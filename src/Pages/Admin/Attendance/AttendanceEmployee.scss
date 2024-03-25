@@ -1,5 +1,40 @@
 /* Add this styling in a separate CSS file or in your component's stylesheet */
+.FilterByAttendance{
+  display: flex;
+  width: 90%;
+  margin-top: 20px;
+  height: 50px;
+  gap: 50px;
+  // justify-content: space-around;
+  // border: 2px solid;
 
+  .FilterSelection{
+    display: flex;
+    gap: 20px;
+    height: 30px;
+    width: 50%;
+    label{
+      font-size: 20px;
+    }
+    select{
+      width: 50%;
+    }
+
+  }
+.SearchByFilterValue{
+  display: flex;
+  gap: 20px;
+  height: 30px;
+  width: 50%;
+
+  label{
+    font-size: 20px;
+  }
+  select{
+    width: 50%;
+  }
+}
+}
 table {
     width: 100%;
     border-collapse: collapse;

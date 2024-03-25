@@ -102,14 +102,14 @@ const Add = () => {
         </div>
         <div className="credentials-container">
         <div className="credentials-section">
-            <h2>View Your Credentials</h2>
+            {/* <h2>View Your Credentials</h2> */}
             <div className="credential-item">
               <label>Password</label>
               <input type="Password"id='Password'name='Password' value={formData.Password} onChange={handleChange} />
             </div>
           </div>
           <div className="more">
-            <h2>View Your Details</h2>
+            {/* <h2>View Your Details</h2> */}
             <div className="credential-item">
               <label>Schedule</label>
               <input type="text" id='Schedule' name='Schedule' value={formData.Schedule} onChange={handleChange} />

@@ -1,31 +1,20 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query/react'
 import { employeeApi } from '../features/employee/employeeApi';
-
-// import { friendApi } from '../features/friends/friendsApi';
-// import { postApi } from '../features/posts/postsApi';
-// import { userApi } from '../features/users/usersApi';
-// import { commentApi } from '../features/Comments/CommentsApi';
-// import { EventsApi } from '../features/event/EventApi';
-// import { photosApi } from '../features/photos/photosApi';
-// import { groupsApi } from '../features/groups/groupsApi';
-// import { notificationApi } from '../features/Notifications/notificationApi';
-
+import { attendanceApi } from '../features/attendance/AttendanceApi';
+import { payrollApi } from '../features/payroll/payrollApi';
+import { scheduleApi } from '../features/Schedule/ScheduleApi';
 
 export const store=configureStore({
     reducer:{
-        // [friendApi.reducerPath]:friendApi.reducer,
-        // [postApi.reducerPath]:postApi.reducer,
-        // [userApi.reducerPath]:userApi.reducer,
-        // [commentApi.reducerPath]:commentApi.reducer,
-        // [EventsApi.reducerPath]:EventsApi.reducer,
-        // [photosApi.reducerPath]: photosApi.reducer,
-        // [groupsApi.reducerPath]: groupsApi.reducer,
-        // [notificationApi.reducerPath]: notificationApi.reducer
-         [employeeApi.reducerPath]: employeeApi.reducer
+    
+         [employeeApi.reducerPath]: employeeApi.reducer,
+         [attendanceApi.reducerPath]: attendanceApi.reducer,
+         [payrollApi.reducerPath]: payrollApi.reducer,
+         [scheduleApi.reducerPath]: scheduleApi.reducer
     },
 
-    middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat( employeeApi.middleware)
+    middleware:(getDefaultMiddleware)=>getDefaultMiddleware().concat( employeeApi.middleware, attendanceApi.middleware, payrollApi.middleware,scheduleApi.middleware)
 
 
 })

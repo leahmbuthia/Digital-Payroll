@@ -1,15 +1,30 @@
 import React from 'react'
-import { useUpdateEmployeeMutation } from '../../features/employee/employeeApi'
-import { useState } from 'react';
-import './UpdateEmployeModal.scss'
+import { useGetEmployeeQuery, useUpdateEmployeeMutation } from '../../features/employee/employeeApi'
+import { useState, useEffect } from 'react';
+// import './UpdateEmployeModal.scss'
 
-const UpdateEmployeeModal = ({ setShowModal, employee }) => {
-  const [updateEmployee, { isLoading }] = useUpdateEmployeeMutation();
-
-  const [formData, setFormData] = useState({
-    FirstName: "" || employee.FirstName,
-    LastName: employee.LastName,
-    Address: employee.Address,
+const EditSingleEmployee = ({ setShowModal, employee, updateEmployeeData  }) => {
+    const [updateEmployee, { isLoading }] = useUpdateEmployeeMutation();
+    const [loggedInUser, setLoggedInUser] = useState(null);
+   
+  
+    // const { data: employeeData, error,  refetch } = useGetEmployeeQuery(formattedLoggedInUser);
+    useEffect(() => {
+      // Retrieve logged-in employee data from local storage
+      const loggedInEmployeeData = JSON.parse(
+        localStorage.getItem("loggedInEmployee")
+      );
+      if (loggedInEmployeeData) {
+        setLoggedInUser(loggedInEmployeeData);
+      }
+      // console.log(loggedInEmployeeData);
+    }, []);
+ 
+  
+    const [formData, setFormData] = useState({
+      FirstName: '' || employee.FirstName,
+      LastName: employee.LastName,
+      Address: employee.Address,
     DOB: employee.DOB,
     Email: employee.Email,
     PhoneNo: employee.PhoneNo,
@@ -17,30 +32,39 @@ const UpdateEmployeeModal = ({ setShowModal, employee }) => {
     Password: employee.Password,
     Position: employee.Position,
     Schedule: employee.Schedule,
-  });
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    console.log(value );
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      
-      // LoadingToast();
-      const response = await updateEmployee({
-        EmployeeID: employee.EmployeeID, ...formData
-      }).unwrap();
-      SuccessToast(response.message);
-    } catch (error) {
-      // ErrorToast("Error updating post: " + error.data.message);
-    }
-    // LoadingToast(false);
-  }
-  const handleClose = () => {
-    setShowModal(false);
-  }
+    });
+  
+    // useEffect(() => {
+    //   if (employeeData) {
+    //     const employee = employeeData;
+    //     setFormData(employee);
+    //   }
+    // }, [employeeData]);
+  
+    // const handleChange = (e) => {
+    //   const { name, value } = e.target;
+    //   setFormData((prevFormData) => ({
+    //     ...prevFormData,
+    //     [name]: value,
+    //   }));
+    // };
+    
+  
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const response = await updateEmployee(formData).unwrap();
+        console.log("Employee updated:", response);
+        // Add success handling here
+      } catch (error) {
+        console.error("Error updating employee:", error);
+        // Handle error, show error message, etc.
+      }
+    };
+  
+    const handleClose = () => {
+      setShowModal(false);
+    };
   return (
     <div className="modal">
       <div className="header">
@@ -121,4 +145,4 @@ const UpdateEmployeeModal = ({ setShowModal, employee }) => {
   )
 }
 
-export default UpdateEmployeeModal
+export default EditSingleEmployee 

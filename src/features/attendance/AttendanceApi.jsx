@@ -6,13 +6,18 @@ export const attendanceApi = createApi({
   tagTypes: ["Attendance"],
   endpoints: (builder) => ({
     getAttendances: builder.query({
-      query: () => "attendance",
+      query: () => "attendances",
       providesTags: ["Attendance"],
     }),
 
     getAttendance: builder.query({
-      query: (attendanceId) => `attendance/${AttendanceId}`,
+      query: (attendance) => `attendance/$AttendanceID`,
       providesTags: ["Attendance"],
+    }),
+    getDateAttendance: builder.query({
+      query: () =>`attendance/$CreatedDate`,
+      providesTags: ["Attendance"]
+      
     }),
 
     addAttendance: builder.mutation({
@@ -25,8 +30,8 @@ export const attendanceApi = createApi({
     }),
 
     updateAttendance: builder.mutation({
-      query: ({ attendanceId, ...attendance }) => ({
-        url: `attendance/${attendanceId}`,
+      query: (attendance ) => ({
+        url: `attendance/${attendance.AttendanceID}`,
         method: "PUT",
         body: attendance,
       }),
@@ -34,8 +39,8 @@ export const attendanceApi = createApi({
     }),
 
     deleteAttendance: builder.mutation({
-      query: (attendanceId) => ({
-        url: `attendance/${attendanceId}`,
+      query: (AttendanceID) => ({
+        url: `attendance/${AttendanceID}`,
         method: "DELETE",
       }),
       invalidatesTags: ["Attendance"],
@@ -46,6 +51,7 @@ export const attendanceApi = createApi({
 export const {
   useGetAttendancesQuery,
   useGetAttendanceQuery,
+  useGetDateAttendanceQuery,
   useAddAttendanceMutation,
   useUpdateAttendanceMutation,
   useDeleteAttendanceMutation,

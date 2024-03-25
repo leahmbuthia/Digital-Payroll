@@ -17,22 +17,18 @@ import {
   ToasterContainer,
 } from "../../Toaster";
 import UpdateEmployeeModal from "./UpdateEmployeeModal";
-// import Avator from '../../assets/Avatar.png'
 
-const Dashboard = (employee) => {
+const Dashboard = () => {
   const navigate = useNavigate();
   const [userInput, setUserInput] = useState("");
-  const [employeeID, setEmployeeID] = useState(null);// State for managing modal visibility
-  const [selectedEmployee, setSelectedEmployee] = useState(null); // State to hold the selected employee data
-
-  const [showEditModal , setEditShowModal] =useState(false);
-  //fetch all employee from the database
-  const { data: employees = [], isLoading, isError } = useGetEmployeesQuery();
-  //delete Employeee
-  const [deleteEmployee]   = useDeleteEmployeeMutation();
-
+  const [employeeID, setEmployeeID] = useState(null);
+  const [selectedEmployee, setSelectedEmployee] = useState(null);
+  const [showEditModal , setEditShowModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // State to manage loading
 
+  const { data: employees = [], isError } = useGetEmployeesQuery();
+  const [deleteEmployee] = useDeleteEmployeeMutation();
 
   const handleChange = (e) => {
     setUserInput(e.target.value);
@@ -40,7 +36,6 @@ const Dashboard = (employee) => {
 
   const handleSubmit = () => {
     navigate("/admin/AdminAdd"); 
-    // navigate("/admin/AdminAdd");
     SuccessToast("Employee added successfully!");
   };
 
@@ -55,10 +50,9 @@ const Dashboard = (employee) => {
   };
 
   const handleDelete = async (EmployeeID) => {
-    LoadingToast(); // Show loading toast before calling the mutation
+    setIsLoading(true); // Set loading to true before calling the mutation
     try {
       const response = await deleteEmployee(EmployeeID).unwrap();
-      console.log(EmployeeID);
       if (response.error) {
         ErrorToast(response.error);
       } else {
@@ -67,11 +61,10 @@ const Dashboard = (employee) => {
     } catch (error) {
       ErrorToast("Error occurred while deleting employee.");
     }
-    LoadingToast(false); // Hide loading toast after the mutation is complete
+    setIsLoading(false); // Set loading to false after the mutation is complete
   };
   
-  const handleEdit =(employee) =>{
-
+  const handleEdit = (employee) => {
     setSelectedEmployee(employee);
     setEditShowModal(true);
   }
@@ -133,33 +126,27 @@ const Dashboard = (employee) => {
                   </button>
                 </span>
                 <div className="img-del-edit">
-            <img src={edit} alt="" onClick={() => handleEdit(employee)}/> 
-
-            <img src={del} alt="" onClick= { ()=> handleDelete(employee.EmployeeID)} />
-            </div>
+                  <img src={edit} alt="" onClick={() => handleEdit(employee)}/> 
+                  <img src={del} alt="" onClick={() => handleDelete(employee.EmployeeID)} />
+                </div>
               </div>
             ))}
           </div>
         )}
       </div>
-      {/* Modal */}
+
       {showModal && (
         <div className="modal-overlay">
           <div className="modal">
-
-              <div className="closeModal">
+            <div className="closeModal">
               <img src={Avator} alt="" />
-            <h3>Employee Details</h3>
-           
-            <span className="close-btn" onClick={closeModal}>
-              &times;
-            </span>
-            
+              <h3>Employee Details</h3>
+              <span className="close-btn" onClick={closeModal}>
+                &times;
+              </span>
             </div>
             <div className="modal-Details">
-            <div className="first-details">
-           
-           
+              <div className="first-details">
                 <div className="employee-inputs">
                   <strong>Employee ID:</strong> {selectedEmployee.EmployeeID}
                 </div>
@@ -181,36 +168,34 @@ const Dashboard = (employee) => {
                 <div className="employee-inputs">
                   <strong>Phone NO:</strong> {selectedEmployee.PhoneNo}
                 </div>
-            </div>
-            {selectedEmployee && (
-              <div className="employee-detail">
-                <div className="employee-inputs">
-                <strong>Gender:</strong> {selectedEmployee.Gender} 
-                </div>
-                <div className="employee-inputs">
-                  <strong>Position:</strong> {selectedEmployee.Position}
-                </div>
-                <div className="employee-inputs">
-                  <strong>Schedule:</strong> {selectedEmployee.Schedule}
-                </div>
-                <div className="employee-inputs">
-                  <strong>Position:</strong> {selectedEmployee.Position}
-                </div>
               </div>
-            )}
+              {selectedEmployee && (
+                <div className="employee-detail">
+                  <div className="employee-inputs">
+                    <strong>Gender:</strong> {selectedEmployee.Gender} 
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Position:</strong> {selectedEmployee.Position}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Schedule:</strong> {selectedEmployee.Schedule}
+                  </div>
+                  <div className="employee-inputs">
+                    <strong>Position:</strong> {selectedEmployee.Position}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>
       )}
 
-  <div className="modal-container">
-        {
-          showEditModal && createPortal(
-            <UpdateEmployeeModal setShowModal={setEditShowModal} employee={selectedEmployee} />,
-            document.body
-          )
-        }
-    </div>
+      <div className="modal-container">
+        {showEditModal && createPortal(
+          <UpdateEmployeeModal setShowModal={setEditShowModal} employee={selectedEmployee} />,
+          document.body
+        )}
+      </div>
     </div>
   );
 };

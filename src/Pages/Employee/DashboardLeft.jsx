@@ -7,6 +7,7 @@ import { createPortal } from 'react-dom';
 import { ToasterContainer } from "../../Toaster"; // Import toaster components
 import { useGetEmployeeQuery } from "../../features/employee/employeeApi";
 import UpdateEmployeeModal from "../Admin/UpdateEmployeeModal";
+import EditSingleEmployee from "./EditSingleEmployee";
 
 const DashboardLeft = (employee) => {
   const [userInput, setUserInput] = useState(""); // State to hold user input for search
@@ -97,7 +98,7 @@ const DashboardLeft = (employee) => {
       <div className="modal-container">
         {
           showEditModal && createPortal(
-            <UpdateEmployeeModal setShowModal={setEditShowModal} employee={employee} />,
+            <EditSingleEmployee setShowModal={setEditShowModal} employee={employee.EmployeeID} />,
             document.body
           )
         }

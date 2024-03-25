@@ -1,37 +1,43 @@
-import React from 'react';
-import './Schedule.scss'
+import React, { useEffect } from 'react';
+import './Schedule.scss';
+import { useGetScheduleQuery } from '../../../features/Schedule/ScheduleApi'; // Import the generated API hook
 
 const Schedule = () => {
-  const schedules = [
-    { name: 'Early Bird', checkIn: '0100 HRS', checkOut: '0900 HRS', duration: '8 Hours' },
-    { name: 'Day Shift', checkIn: '0900 HRS', checkOut: '1700 HRS', duration: '8 Hours' },
-    { name: 'Swing Shift', checkIn: '1700 HRS', checkOut: '0100 HRS', duration: '8 Hours' },
-  ];
+  const loggedInEmployeeData = JSON.parse(localStorage.getItem("loggedInEmployee"));
+  const employeeID = loggedInEmployeeData ? loggedInEmployeeData.EmployeeID : null;
+
+  const { data: scheduleDetails, error, isLoading } = useGetScheduleQuery(employeeID);
+
+  useEffect(() => {
+    // Fetch schedule details when component mounts or when employeeID changes
+    // This will trigger the useGetScheduleQuery hook with the updated employeeID
+  }, [employeeID]);
 
   return (
     <div className="schedule-container">
-      {/* <h2>Schedule Details</h2> */}
       <h2>Schedule Details</h2>
-      <table className="schedule-table">
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Check-In</th>
-            <th>Check-Out</th>
-            <th>Duration</th>
-          </tr>
-        </thead>
-        <tbody>
-          {schedules.map((schedule, index) => (
-            <tr key={index}>
-              <td>{schedule.name}</td>
-              <td>{schedule.checkIn}</td>
-              <td>{schedule.checkOut}</td>
-              <td>{schedule.duration}</td>
+      {isLoading && <div>Loading...</div>}
+      {error && <div>Error: {error.message}</div>}
+      {scheduleDetails && (
+        <table className="schedule-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Check-In</th>
+              <th>Check-Out</th>
+              <th>Duration</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{scheduleDetails.name}</td>
+              <td>{scheduleDetails.checkIn}</td>
+              <td>{scheduleDetails.checkOut}</td>
+              <td>{scheduleDetails.duration}</td>
+            </tr>
+          </tbody>
+        </table>
+      )}
     </div>
   );
 };
