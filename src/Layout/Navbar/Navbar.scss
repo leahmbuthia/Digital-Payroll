@@ -1,9 +1,9 @@
 .nav {
     display: flex;
     justify-content: space-between;
-    background-color: white;
+    background-color: #2596be;
     height: 8vh;
-    width: 97%; 
+    width: 99%; 
 
     .logo{
         display: flex;
@@ -16,18 +16,26 @@
         p{
             font-size: 18px;
             font-weight: bold;
+            color: white;
         }
     } 
     .profile{
         display: flex;
-        justify-content: end;
+        // justify-content: end;
+justify-content: center;
+align-items: center;
         gap: 20px;
+        font-size: 25px;
+        font-weight: bold;
+        color: white;
       
    
     .profile img{
-        width: 40px;
-        height: 40px;
+
+        width: 10px;
+        height: 10px;
         border: 50%;
+
         margin-right: 10px;
     } 
     // .logout{

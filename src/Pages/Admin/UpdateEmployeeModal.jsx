@@ -43,7 +43,7 @@ const UpdateEmployeeModal = ({ setShowModal, employee }) => {
   }
   return (
     <div className="modal">
-      <div className="header">
+      <div className="header33">
         <div>Employee Update Form</div>
         <button className="close-btn" onClick={handleClose}>Close</button>
       </div>

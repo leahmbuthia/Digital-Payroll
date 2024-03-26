@@ -1,59 +1,97 @@
 .add-main {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  width: 80vw;
-  height: 90vh;
-  background-color: grey;
-  // border: 4px solid #007bff;
+  height: 100vh;
 
   .cont {
-    width: 100%;
+    background-color: #f2f2f2;
     padding: 20px;
-    font-size: 20px;
-    box-sizing: border-box;
+    border-radius: 10px;
 
     h2 {
-      margin-bottom: 20px;
+      text-align: center;
     }
 
     .add-form {
-      width: 100%;
+      margin-top: 20px;
 
-      .formSubmit {
-        display: flex;
-        // flex-direction: column;
-
+      form {
         .form-inputs {
-          // display: flex;
-          gap: 20px;
+          display: flex;
+          flex-wrap: wrap;
           justify-content: space-between;
+       gap: 20px;
+       margin-right: 20px;
 
           .first1 {
-            margin-right: 20px; /* Add space between the two sections */
-            width: 50%;
-            background-color: #ffffff;
-            padding: 10px;
-            border: 1px solid black;
+            width: calc(50% - 10px);
+            margin-bottom: 10px;
+
+            div {
+              margin-bottom: 10px;
+
+              label {
+                display: block;
+                margin-bottom: 5px;
+              }
+
+              input,
+              select {
+                width: 100%;
+                padding: 8px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+              }
+            }
+
+            .profile {
+              input[type='file'] {
+                width: auto;
+                padding: 8px 0;
+              }
+            }
           }
 
           .credentials-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 50%;
+            width: calc(50% - 10px);
+            margin-bottom: 10px;
+
+            .credentials-section {
+              .credential-item {
+                margin-bottom: 10px;
+
+                label {
+                  display: block;
+                  margin-bottom: 5px;
+                }
+
+                input {
+                  width: 100%;
+                  padding: 8px;
+                  border-radius: 5px;
+                  border: 1px solid #ccc;
+                }
+              }
+            }
+
+            .more {
+              .credential-item {
+                margin-bottom: 10px;
+              }
+            }
           }
         }
-      }
 
-        button[type="submit"] {
-          margin-top: 20px;
-          padding: 10px 20px;
+        button[type='submit'] {
+          width: 100%;
+          padding: 10px;
           background-color: #007bff;
           color: #fff;
           border: none;
           border-radius: 5px;
           cursor: pointer;
+          transition: background-color 0.3s ease;
 
           &:hover {
             background-color: #0056b3;
@@ -62,4 +100,4 @@
       }
     }
   }
-
+}

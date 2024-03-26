@@ -11,35 +11,36 @@ const Schedule = () => {
   useEffect(() => {
     // Fetch schedule details when component mounts or when employeeID changes
     // This will trigger the useGetScheduleQuery hook with the updated employeeID
-  }, [employeeID]);
-
+    console.log("Schedule Details:", scheduleDetails);
+    console.log("Error:", error);
+  }, [employeeID, error, scheduleDetails]);
   return (
     <div className="schedule-container">
       <h2>Schedule Details</h2>
       {isLoading && <div>Loading...</div>}
       {error && <div>Error: {error.message}</div>}
-      {scheduleDetails && (
+      {scheduleDetails && scheduleDetails.schedule && (
         <table className="schedule-table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>Check-In</th>
-              <th>Check-Out</th>
+              <th>Days</th>
+              <th>Start Time</th>
+              <th>End Time</th>
               <th>Duration</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>{scheduleDetails.name}</td>
-              <td>{scheduleDetails.checkIn}</td>
-              <td>{scheduleDetails.checkOut}</td>
-              <td>{scheduleDetails.duration}</td>
+              <td>{scheduleDetails.schedule.Days}</td>
+              <td>{scheduleDetails.schedule.StartTime}</td>
+              <td>{scheduleDetails.schedule.EndTime}</td>
+              <td>{scheduleDetails.schedule.Duration}</td>
             </tr>
           </tbody>
         </table>
       )}
     </div>
   );
-};
+      }  
 
 export default Schedule;

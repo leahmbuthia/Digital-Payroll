@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useGetAttendancesQuery, useGetAttendanceQuery, useGetDateAttendanceQuery, useDeleteAttendanceMutation } from '../../../features/attendance/AttendanceApi';
 import './AttendanceEmployee.scss';
 import { ErrorToast, LoadingToast, ToasterContainer } from "../../../Toaster";
+import { MdDelete } from "react-icons/md";
 
 const AttendanceEmployee = () => {
   const { data, isLoading, isError } = useGetAttendancesQuery();
@@ -131,7 +132,13 @@ const AttendanceEmployee = () => {
                     <td>{new Date(attendance.CreatedDate).toLocaleDateString()}</td>
                     <td>{new Date(attendance.TimeIn).toLocaleTimeString('en-US', {hour12: false})}</td>
                     <td>{new Date(attendance.TimeOut).toLocaleTimeString('en-US', {hour12: false})}</td>
-                    <td><button onClick={() => handleDelete(attendance.AttendanceID)}>Delete</button></td>
+                    <MdDelete
+                        onClick={() => handleDelete(employee.EmployeeID)}
+                        style={{
+                          color: "red",
+                          fontSize:
+                            "30px" /* Add any other inline styles here */,
+                        }}/>
                   </tr>
                 ))}
               </tbody>

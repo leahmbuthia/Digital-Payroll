@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useGetPayrollsQuery, useGetPayrollQuery, useDeletePayrollMutation, useGetPayrollByIDQuery } from '../../../features/payroll/payrollApi';
-import './Payroll.scss';
+// import './AdminPayroll.scss';
 import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../../Toaster';
 import RotateLoader from "react-spinners/RotateLoader";
 import AddPayroll from './AddPayroll';

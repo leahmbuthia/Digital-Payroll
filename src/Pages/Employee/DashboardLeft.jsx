@@ -98,7 +98,7 @@ const DashboardLeft = (employee) => {
       <div className="modal-container">
         {
           showEditModal && createPortal(
-            <EditSingleEmployee setShowModal={setEditShowModal} employee={employee.EmployeeID} />,
+            <EditSingleEmployee setShowModal={setEditShowModal} employee={employee} />,
             document.body
           )
         }

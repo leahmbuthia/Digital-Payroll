@@ -3,10 +3,20 @@ import "./Attendance.scss"
 import Employee from '../../../../src/assets/images.png'
 import AttendanceGraph from './AttendanceGraph'
 import AttendanceEmployee from './AttendanceEmployee'
+import { useEffect } from 'react';
+import { useGetEmployeesQuery } from '../../../features/employee/employeeApi'; // Import the query hook
+// import { useGetEmployeesCountMutation } from '../../../features/employee/employeeApi'; 
 
 
 
 const AdminAttendance = () => {
+//   const { data: employees, isFetching } = useGetEmployeesQuery(); // Query to get all employees
+//   // const [getEmployeesCount, { data: employeeCount }] = useGetEmployeesCountMutation(); // Mutation to get employee count
+
+//   useEffect(() => {
+//     getEmployeesCount(); // Fetch the employee count when component mounts
+//   }, [getEmployeesCount]);
+
   return (
   <div className="main-adminattendance">
     <div className="admin-card">
@@ -16,7 +26,7 @@ const AdminAttendance = () => {
          Total Employees</h3>
          <div className="img">
       <img src={Employee} alt="" />
-       <p>Number of Employee</p>
+      {/* <p>{employeeCount}</p> */}
        </div>
       </div>
     </div>

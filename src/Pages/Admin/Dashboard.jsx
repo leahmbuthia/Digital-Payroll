@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Dashboard.scss";
-import { createPortal } from 'react-dom';
+import { createPortal } from "react-dom";
 import Avator from "../../assets/Avatar.png";
 import edit from "../../assets/edit-512.webp";
 import del from "../../assets/del.png";
+import { MdDelete } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
 import {
   useDeleteEmployeeMutation,
   useGetEmployeeQuery,
@@ -23,7 +25,7 @@ const Dashboard = () => {
   const [userInput, setUserInput] = useState("");
   const [employeeID, setEmployeeID] = useState(null);
   const [selectedEmployee, setSelectedEmployee] = useState(null);
-  const [showEditModal , setEditShowModal] = useState(false);
+  const [showEditModal, setEditShowModal] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false); // State to manage loading
 
@@ -35,12 +37,12 @@ const Dashboard = () => {
   };
 
   const handleSubmit = () => {
-    navigate("/admin/AdminAdd"); 
+    navigate("/admin/AdminAdd");
     SuccessToast("Employee added successfully!");
   };
 
   const handleSeeMore = (employeeID) => {
-    const employee = employees.find(emp => emp.EmployeeID === employeeID);
+    const employee = employees.find((emp) => emp.EmployeeID === employeeID);
     setSelectedEmployee(employee);
     setShowModal(true);
   };
@@ -63,14 +65,14 @@ const Dashboard = () => {
     }
     setIsLoading(false); // Set loading to false after the mutation is complete
   };
-  
+
   const handleEdit = (employee) => {
     setSelectedEmployee(employee);
     setEditShowModal(true);
-  }
+  };
 
   return (
-    <div className="Dashboard-Container" >
+    <div className="Dashboard-Container">
       <ToasterContainer />
       <div className="profile-list">
         <div className="container">
@@ -87,17 +89,6 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
-        <div className="lists">
-          <ul>
-            <li>Profile</li>
-            <li>Name</li>
-            <li>EmployeeID</li>
-            <li>Email</li>
-            <li>Position</li>
-            <li>See More Details</li>
-          </ul>
-        </div>
-
         {isLoading ? (
           <div>
             {LoadingToast()}
@@ -109,29 +100,65 @@ const Dashboard = () => {
             Error occurred while fetching data.
           </div>
         ) : (
-          <div>
-            {employees.map((employee) => (
-              <div className="list" key={employee.EmployeeID}>
-                <span>
-                  <img src={Avator} alt="Avatar" />
-                </span>
-                <span>{employee.FirstName}</span>
-                <span>{employee.LastName}</span>
-                <span>{employee.EmployeeID}</span>
-                <span>{employee.Email}</span>
-                <span>{employee.Position}</span>
-                <span>
-                  <button onClick={() => handleSeeMore(employee.EmployeeID)}>
-                    See More
-                  </button>
-                </span>
-                <div className="img-del-edit">
-                  <img src={edit} alt="" onClick={() => handleEdit(employee)}/> 
-                  <img src={del} alt="" onClick={() => handleDelete(employee.EmployeeID)} />
-                </div>
-              </div>
-            ))}
-          </div>
+          <table className="employee-table">
+            <thead>
+              <tr>
+                <th>Profile</th>
+                <th>Name</th>
+                <th>Employee ID</th>
+                <th>Email</th>
+                <th>Position</th>
+                <th>See More Details</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {employees.map((employee, index) => (
+                <tr
+                  key={employee.EmployeeID}
+                  className={index % 2 === 0 ? "even-row" : "odd-row"}
+                >
+                  <td>
+                    <img src={Avator} alt="Avatar" />
+                  </td>
+                  <td>{`${employee.FirstName} ${employee.LastName}`}</td>
+                  <td>{employee.EmployeeID}</td>
+                  <td>{employee.Email}</td>
+                  <td>{employee.Position}</td>
+                  <td>
+                    <button onClick={() => handleSeeMore(employee.EmployeeID)}>
+                      See More
+                    </button>
+                  </td>
+                  <td>
+                    <div className="img-del-edit">
+                    <FaRegEdit
+                        onClick={() => handleEdit(employee)}
+                        style={{
+                          color: "blue",
+                          fontSize:
+                            "30px" /* Add any other inline styles here */,
+                        }}
+                      />
+                      {/* <img src={edit} alt="" onClick={() => handleEdit(employee)} /> */}
+                      {/* <MdDelete  onClick={() => handleEdit(employee)}/> */}
+                      <MdDelete
+                        onClick={() => handleDelete(employee.EmployeeID)}
+                        style={{
+                          color: "red",
+                          fontSize:
+                            "30px" /* Add any other inline styles here */,
+                        }}
+                      />
+                      {/* <img src={del} alt="" onClick={() => handleDelete(employee.EmployeeID)} /> */}
+                      {/* <FaRegEdit onClick={() => handleDelete(employee.EmployeeID)} /> */}
+                    
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         )}
       </div>
 
@@ -154,13 +181,13 @@ const Dashboard = () => {
                   <strong>FirstName:</strong> {selectedEmployee.FirstName}
                 </div>
                 <div className="employee-inputs">
-                  <strong>LastName:</strong> {selectedEmployee.lastName} 
+                  <strong>LastName:</strong> {selectedEmployee.lastName}
                 </div>
                 <div className="employee-inputs">
-                  <strong>Address:</strong> {selectedEmployee.Address} 
+                  <strong>Address:</strong> {selectedEmployee.Address}
                 </div>
                 <div className="employee-inputs">
-                  <strong>DOB:</strong> {selectedEmployee.DOB} 
+                  <strong>DOB:</strong> {selectedEmployee.DOB}
                 </div>
                 <div className="employee-inputs">
                   <strong>Email:</strong> {selectedEmployee.Email}
@@ -172,7 +199,7 @@ const Dashboard = () => {
               {selectedEmployee && (
                 <div className="employee-detail">
                   <div className="employee-inputs">
-                    <strong>Gender:</strong> {selectedEmployee.Gender} 
+                    <strong>Gender:</strong> {selectedEmployee.Gender}
                   </div>
                   <div className="employee-inputs">
                     <strong>Position:</strong> {selectedEmployee.Position}
@@ -191,10 +218,14 @@ const Dashboard = () => {
       )}
 
       <div className="modal-container">
-        {showEditModal && createPortal(
-          <UpdateEmployeeModal setShowModal={setEditShowModal} employee={selectedEmployee} />,
-          document.body
-        )}
+        {showEditModal &&
+          createPortal(
+            <UpdateEmployeeModal
+              setShowModal={setEditShowModal}
+              employee={selectedEmployee}
+            />,
+            document.body
+          )}
       </div>
     </div>
   );

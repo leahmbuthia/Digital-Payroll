@@ -3,12 +3,14 @@
     flex-direction: column;
     width: 80vw;
     height: 90vh;
+    background-color: #eeeee4;
     .admin-card{
       display: flex;
     
     .card {
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
         width: 25vw;
         height: 20vh;
         margin: 8px 0px 1px 8px;

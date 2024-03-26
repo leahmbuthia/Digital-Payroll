@@ -1,104 +1,119 @@
-// .modal {
-//     position: fixed;
-//     top: 50%;
-//     left: 50%;
-//     right: 50%;
-//     bottom: 50%;
-//     height: 90vh;
-//     transform: translate(-50%, -50%);
-//     background-color: white;
-//     padding: 20px;
-//     border-radius: 5px;
-//     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-//     width: 90vw;
-//     border: 2px solid blue;
-//   }
+// UpdateEmployeeModal.scss
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.5); // Semi-transparent background
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    // width: 50%;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
   
-//   .header {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     margin-bottom: 20px;
-//   }
+    .header33 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    //   width: 100%;
+      background-color: #ccc;
+      gap: 20px;
+      width: 420px;
+      border-bottom: 1px solid #ccc;
+      border-radius: 10px;
   
-//   .header div {
-//     font-size: 18px;
-//   }
+      .close-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+    }
   
-//   .close-btn {
-//     background-color: #ccc;
-//     border: none;
-//     padding: 5px 10px;
-//     border-radius: 5px;
-//     cursor: pointer;
-//   }
+    .form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
   
-//   .form {
-//     display: flex;
-//     flex-direction: column;
-//   }
+      .form-inputs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
   
-//   .form-inputs {
-//     display: flex;
-//     flex-direction: column;
-//   }
+        div {
+          width: calc(50% - 10px); // Two columns layout
+        }
+      }
   
-//   .form-inputs div {
-//     margin-bottom: 10px;
-//   }
+      label {
+        font-weight: bold;
+      }
   
-//   .Gender {
-//     margin-bottom: 10px;
-//   }
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
   
-//   .credentials-container {
-//     margin-top: 20px;
-//   }
+      .credentials-container {
+        margin-top: 20px;
   
-//   .credentials-section h2 {
-//     font-size: 18px;
-//   }
+        .credentials-section {
+          margin-bottom: 10px;
   
-//   .more {
-//     margin-top: 20px;
-//   }
+          h2 {
+            font-size: 18px;
+            margin-bottom: 8px;
+          }
+        }
   
-//   .credential-item {
-//     margin-bottom: 10px;
-//   }
+        .more {
+          .credential-item {
+            margin-bottom: 10px;
   
-//   button[type="submit"] {
-//     background-color: #007bff;
-//     color: white;
-//     border: none;
-//     padding: 10px 20px;
-//     border-radius: 5px;
-//     cursor: pointer;
-//   }
+            label {
+              font-weight: bold;
+            }
   
-//   button[type="submit"]:hover {
-//     background-color: #0056b3;
-//   }
+            input {
+              width: 100%;
+              padding: 8px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            }
+          }
   
-//   input[type="text"],
-//   input[type="date"],
-//   input[type="email"],
-//   input[type="tel"],
-//   select {
-//     width: 100%;
-//     padding: 8px;
-//     border: 1px solid #ccc;
-//     border-radius: 5px;
-//     box-sizing: border-box;
-//   }
-  
-//   input[type="text"]:focus,
-//   input[type="date"]:focus,
-//   input[type="email"]:focus,
-//   input[type="tel"]:focus,
-//   select:focus {
-//     outline: none;
-//     border-color: #007bff;
-//     box-shadow: 0px 0px 5px rgba(0, 123, 255, 0.5);
-//   }
+          button[type="submit"] {
+            width: 30%;
+            padding: 10px ;
+          //   padding-left: 65px;
+          align-self: center;
+            border: none;
+            background-color: #2a277a;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 1s;
+            border-radius: 10px;
+            
+    
+            &:hover{
+              background-color: blue;
+            }
+         
+          }
+        }
+      }
+    }
+  }
   

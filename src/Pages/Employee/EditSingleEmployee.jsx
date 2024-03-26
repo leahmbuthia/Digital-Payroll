@@ -3,25 +3,28 @@ import { useGetEmployeeQuery, useUpdateEmployeeMutation } from '../../features/e
 import { useState, useEffect } from 'react';
 // import './UpdateEmployeModal.scss'
 
-const EditSingleEmployee = ({ setShowModal, employee, updateEmployeeData  }) => {
-    const [updateEmployee, { isLoading }] = useUpdateEmployeeMutation();
-    const [loggedInUser, setLoggedInUser] = useState(null);
+const EditSingleEmployee = ({ setShowModal, employee }) => {
+  const user=JSON.parse(localStorage.getItem('loggedInEmployee'))
+  // console.log("user",user);
+    const [updateEmployee, { isLoading }] = useUpdateEmployeeMutation(user.EmployeeID);
+    // const [loggedInUser, setLoggedInUser] = useState(null);
    
   
     // const { data: employeeData, error,  refetch } = useGetEmployeeQuery(formattedLoggedInUser);
-    useEffect(() => {
-      // Retrieve logged-in employee data from local storage
-      const loggedInEmployeeData = JSON.parse(
-        localStorage.getItem("loggedInEmployee")
-      );
-      if (loggedInEmployeeData) {
-        setLoggedInUser(loggedInEmployeeData);
-      }
-      // console.log(loggedInEmployeeData);
-    }, []);
+    // useEffect(() => {
+    //   // Retrieve logged-in employee data from local storage
+    //   const loggedInEmployeeData = JSON.parse(
+    //     localStorage.getItem("loggedInEmployee")
+    //   );
+    //   if (loggedInEmployeeData) {
+    //     setLoggedInUser(loggedInEmployeeData);
+    //   }
+    //   console.log(loggedInEmployeeData);
+    // }, []);
  
   
     const [formData, setFormData] = useState({
+      EmployeeID: user.EmployeeID,
       FirstName: '' || employee.FirstName,
       LastName: employee.LastName,
       Address: employee.Address,
@@ -41,13 +44,13 @@ const EditSingleEmployee = ({ setShowModal, employee, updateEmployeeData  }) => 
     //   }
     // }, [employeeData]);
   
-    // const handleChange = (e) => {
-    //   const { name, value } = e.target;
-    //   setFormData((prevFormData) => ({
-    //     ...prevFormData,
-    //     [name]: value,
-    //   }));
-    // };
+    const handleChange = (e) => {
+      const { name, value } = e.target;
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    };
     
   
     const handleSubmit = async (e) => {

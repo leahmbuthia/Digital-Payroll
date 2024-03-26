@@ -3,44 +3,43 @@ import './Payroll.scss';
 import Schedule from './Schedule';
 import LeaveApplication from './LeaveApplication';
 import { useGetPayrollQuery } from '../../../features/payroll/payrollApi'; // Import the generated API hook
+import PayrollDetails from '../../Admin/Payroll/PayrollDetails';
+import DownloadPayroll from './DownloadPayroll';
+
 
 const Payroll = () => {
   const [payrollId, setPayrollId] = useState(null);
   const [employeeId, setEmployeeId] = useState(null);
-
-  // const { data: payrollDetails, error, isLoading } = useGetPayrollQuery(employeeId);
-  // Fetch EmployeeID from local storage on component mount
-  // useEffect(() => {
-  //   const loggedInEmployeeData = JSON.parse(localStorage.getItem("loggedInEmployee"));
-  //   if (loggedInEmployeeData) {
-  //     setEmployeeId(loggedInEmployeeData.EmployeeID);
-  //   }
-  // }, []);
+  const [showPayrollModal, setShowPayrollModal] = useState(false); // State to control modal visibility
 
   const loggedInUser = localStorage.getItem('loggedInEmployee');
   const formattedLoggedInUser = JSON.parse(loggedInUser);
   const { data: payrollDetails, error, isLoading } = useGetPayrollQuery(formattedLoggedInUser);
 
   const handleDownloadPayslip = () => {
-    // Logic to download the payslip
-    // You can use payrollDetails to generate the payslip
-    // For simplicity, I'll just log the payrollDetails
-    console.log("Payslip Details:", payrollDetails);
+    // Open the payroll details modal
+    setShowPayrollModal(true);
   };
 
+  const handleCloseModal = () => {
+    // Close the payroll details modal
+    setShowPayrollModal(false);
+  };
   const renderPayrollTable = () => {
     if (isLoading) {
       return <div>Loading...</div>;
     }
-
+  
     if (error) {
       return <div>Error: {error.message}</div>;
     }
-
-    if (!payrollDetails) {
+  
+    if (!payrollDetails || !payrollDetails.payroll) {
       return null;
     }
-
+  
+    const payroll = payrollDetails.payroll; // Access the payroll details
+  
     return (
       <table>
         <thead>
@@ -58,15 +57,15 @@ const Payroll = () => {
         </thead>
         <tbody>
           <tr>
-            <td>{payrollDetails.PayrollID}</td>
-            <td>{payrollDetails.EmployeeID}</td>
-            <td>{payrollDetails.NHIF}</td>
-            <td>{payrollDetails.NSSF}</td>
-            <td>{payrollDetails.PAYE}</td>
-            <td>{payrollDetails.TotalDeductions}</td>
-            <td>{payrollDetails.GrossPay}</td>
-            <td>{payrollDetails.NetPay}</td>
-            <td>{payrollDetails.PayrollDate}</td>
+            <td>{payroll.PayrollID}</td>
+            <td>{payroll.EmployeeID}</td>
+            <td>{payroll.NHIF}</td>
+            <td>{payroll.NSSF}</td>
+            <td>{payroll.PAYE}</td>
+            <td>{payroll.TotalDeductions}</td>
+            <td>{payroll.GrossPay}</td>
+            <td>{payroll.NetPay}</td>
+            <td>{payroll.PayrollDate}</td>
           </tr>
         </tbody>
       </table>
@@ -85,6 +84,10 @@ const Payroll = () => {
         </div>
         <button className='button' onClick={handleDownloadPayslip}>Download Payslip</button>
       </div> */}
+         <button className="button" onClick={handleDownloadPayslip}>Download Payslip</button>
+    
+      {/* Render PayrollDetails modal */}
+    
          <div className="payroll-table">
         {renderPayrollTable()}
       </div>
@@ -96,6 +99,13 @@ const Payroll = () => {
           <LeaveApplication/>
         </div>
       </div>
+      {showPayrollModal && (
+        <DownloadPayroll
+          payrollID={payrollDetails?.payroll?.PayrollID} 
+          onClose={handleCloseModal} 
+          isLoading={isLoading} 
+        />
+      )}
    
     </div>
   );

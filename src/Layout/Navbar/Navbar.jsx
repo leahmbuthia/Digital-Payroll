@@ -4,6 +4,7 @@ import logo from '../../assets/DIGITAL PAYROLL.png';
 import Avator from '../../assets/Avatar.png';
 import Dropdown from '../../assets/logout-line-icon-vector-46979846.webp';
 import { useNavigate } from 'react-router-dom';
+import { CiPower } from "react-icons/ci";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -22,8 +23,10 @@ const Navbar = () => {
         <p>Digital Payroll</p>
       </div>
       <div className="profile">
-        <img src={Avator} alt='' />
-        <img src={Dropdown} alt="" onClick={handleLogout} />
+      <img src={Avator} alt='' style={{ width: '30px',height: '30px' }} />
+
+     
+        <CiPower onClick={handleLogout} />
       </div>
     </div>
   );
