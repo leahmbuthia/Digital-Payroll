@@ -1,0 +1,159 @@
+/* AdminPayroll.css */
+
+.FilterByPayroll {
+    margin-bottom: 20px;
+    width: 80vw;
+
+  }
+  
+  .FilterSelection {
+    margin-bottom: 10px;
+  }
+  
+  .FilterSelection label {
+    margin-right: 18px;
+  }
+//   .select{
+//     width: 50px;
+//   }
+  
+  .SearchByFilterValue {
+    margin-bottom: 10px;
+  }
+  
+  .SearchByFilterValue label {
+    margin-right: 10px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .btn{
+    width: 40%;
+    padding: 10px ;
+    height: 20px;
+  //   padding-left: 65px;
+  align-self: center;
+    border: none;
+    background-color: #2a277a;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 1s;
+    border-radius: 10px;
+    
+
+    &:hover{
+      background-color: blue;
+    }
+ 
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  
+  button{
+    width: 20%;
+    padding: 10px ;
+  //   padding-left: 65px;
+  align-self: center;
+    border: none;
+    background-color: #2a277a;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 1s;
+    border-radius: 10px;
+    
+
+    &:hover{
+      background-color: blue;
+    }
+ 
+  }
+  
+  .ToasterContainer {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .Toaster {
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  .ToastError {
+    background-color: #ff6347;
+  }
+  
+  .ToastSuccess {
+    background-color: #32cd32;
+  }
+  
+  .ToastLoading {
+    background-color: #6495ed;
+  }
+  
+  .ToastMessage {
+    color: white;
+  }
+  
+  .ToastIcon {
+    margin-right: 5px;
+  }
+  
+  .ToastClose {
+    cursor: pointer;
+    float: right;
+    margin-left: 10px;
+  }
+  
+  .ToastClose:hover {
+    color: white;
+  }
+  
+//   .modal {
+//     display: none;
+//     position: fixed;
+//     z-index: 1000;
+//     left: 0;
+//     top: 0;
+//     width: 100%;
+//     height: 100%;
+//     overflow: auto;
+//     background-color: rgba(0,0,0,0.4);
+//   }
+  
+//   .modal-content {
+//     background-color: #fefefe;
+//     margin: 15% auto;
+//     padding: 20px;
+//     border: 1px solid #888;
+//     width: 80%;
+//   }
+  
+//   .close {
+//     color: #aaaaaa;
+//     float: right;
+//     font-size: 28px;
+//     font-weight: bold;
+//   }
+  
+//   .close:hover,
+//   .close:focus {
+//     color: #000;
+//     text-decoration: none;
+//     cursor: pointer;
+//   }
+  

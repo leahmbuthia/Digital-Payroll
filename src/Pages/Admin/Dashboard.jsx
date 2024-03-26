@@ -168,16 +168,16 @@ const Dashboard = () => {
             <div className="closeModal">
               <img src={Avator} alt="" />
               <h3>Employee Details</h3>
-              <span className="close-btn" onClick={closeModal}>
-                &times;
-              </span>
+              <span className="close-btn" onClick={closeModal} style={{ color: 'red', cursor: 'pointer', fontSize: '40px'}}>
+  &times;
+</span>
             </div>
             <div className="modal-Details">
               <div className="first-details">
                 <div className="employee-inputs">
                   <strong>Employee ID:</strong> {selectedEmployee.EmployeeID}
                 </div>
-                <div>
+                <div className="employee-inputs">
                   <strong>FirstName:</strong> {selectedEmployee.FirstName}
                 </div>
                 <div className="employee-inputs">

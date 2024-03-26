@@ -19,15 +19,27 @@ const AdminAttendance = () => {
 
   return (
   <div className="main-adminattendance">
-    <div className="admin-card">
+    <h2>Attendance Statics</h2>
+    {/* <div className="admin-card">
+    // <div className="card">
+    //   <div className="card-content">
+    //     <h3 className="title">
+    //      Total Employees</h3>
+    //      <div className="img">
+    //   <img src={Employee} alt="" />
+    //   <p>{employeeCount}</p>
+    //    </div>
+    //   </div>
+    // </div>
     <div className="card">
       <div className="card-content">
         <h3 className="title">
          Total Employees</h3>
          <div className="img">
       <img src={Employee} alt="" />
-      {/* <p>{employeeCount}</p> */}
+       <p>Number of Employee</p>
        </div>
+       
       </div>
     </div>
     <div className="card">
@@ -41,25 +53,14 @@ const AdminAttendance = () => {
        
       </div>
     </div>
-    <div className="card">
-      <div className="card-content">
-        <h3 className="title">
-         Total Employees</h3>
-         <div className="img">
-      <img src={Employee} alt="" />
-       <p>Number of Employee</p>
-       </div>
-       
-      </div>
     </div>
-    </div>
-   
+    */}
     <div className="AttendanceEmployee">
       <AttendanceEmployee/>
     </div>
-    {/* <div className="graph">
+    <div className="graph">
       <AttendanceGraph/>
-    </div> */}
+    </div>
     </div>
   )
 }

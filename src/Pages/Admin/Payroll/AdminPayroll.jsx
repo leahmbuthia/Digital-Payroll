@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { useGetPayrollsQuery, useGetPayrollQuery, useDeletePayrollMutation, useGetPayrollByIDQuery } from '../../../features/payroll/payrollApi';
-// import './AdminPayroll.scss';
+import { useGetPayrollsQuery, useGetPayrollQuery, useDeletePayrollMutation, useGetPayrollByIDQuery, useUpdatePayrollMutation } from '../../../features/payroll/payrollApi';
+import './AdminPayroll.scss';
 import { ErrorToast, LoadingToast, SuccessToast, ToasterContainer } from '../../../Toaster';
 import RotateLoader from "react-spinners/RotateLoader";
 import AddPayroll from './AddPayroll';
 import PayrollDetails from './PayrollDetails';
+import { MdDelete } from "react-icons/md";
+import { FaRegEdit } from "react-icons/fa";
+import { MdOutlinePrint } from "react-icons/md";
 
 const AdminPayroll = () => {
   const { data, isLoading, isError, isFetching, error } = useGetPayrollsQuery();
@@ -15,9 +18,15 @@ const AdminPayroll = () => {
   const { data: selectedDatePayrollData } = useGetPayrollQuery(selectedFilter === 'PayrollDate' ? selectedValue : null);
   const { data: selectedEmployeePayrollData } = useGetPayrollQuery(selectedFilter === 'EmployeeID' ? selectedValue : null);
   const [showModal, setShowModal] = useState(false);
+  const [editPayrollData, setEditPayrollData] = useState(null);
+  const [updatePayroll] = useUpdatePayrollMutation();
 
   const handleModalClose = () => {
     setShowModal(false);
+  };
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setEditPayrollData(null);
   };
 
   const [deletePayroll] = useDeletePayrollMutation();
@@ -57,6 +66,10 @@ const AdminPayroll = () => {
     setSelectedPayrollID(PayrollID);
   };
 
+  const handleEdit = (payroll) => {
+    setEditPayrollData(payroll);
+    setShowModal(true);
+  };
   return (
     <>
       {isLoading ? (
@@ -121,7 +134,7 @@ const AdminPayroll = () => {
               </div>
             )}
 
-            <h2>Payroll Management Table</h2>
+            
             <button onClick={() => setShowModal(true)}>Add Payroll</button>
             {/* AddPayroll modal */}
             {showModal && (
@@ -155,11 +168,32 @@ const AdminPayroll = () => {
                     <td>{payroll.PAYE}</td>
                     <td>{payroll.TotalDeductions}</td>
                     <td>
-                      <button onClick={() => handleDelete(payroll.PayrollID)}>Delete</button>
-                    </td>
-                    <td>
-                      <button onClick={() => handlepay(payroll.PayrollID)}>Pay</button>
-                    </td>
+                    <FaRegEdit
+                        onClick={() => handleEdit(payroll)}
+                        style={{
+                          color: "blue",
+                          fontSize:
+                            "30px" /* Add any other inline styles here */,
+                        }}/>
+                      {/* <button onClick={() => handleDelete(payroll.PayrollID)}>Delete</button> */}
+                      <MdDelete
+                        onClick={() => handleDelete(payroll.PayrollID)}
+                        style={{
+                          color: "red",
+                          fontSize:
+                            "30px" /* Add any other inline styles here */,
+                        }}/>
+                 
+                    
+                    <MdOutlinePrint onClick={() => handlepay(payroll.PayrollID)} 
+                    style={{
+                      color: "#063970",
+                      fontSize: "30px"
+                    }}/>
+                      {/* <div className="btn" >
+                      <button onClick={() => handlepay(payroll.PayrollID)}>Print</button>
+                      </div> */}
+                       </td>
                   </tr>
                 ))}
               </tbody>

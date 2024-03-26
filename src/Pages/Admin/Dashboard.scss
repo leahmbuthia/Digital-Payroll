@@ -109,20 +109,18 @@ tbody{
 .modal-overlay{
   display: flex;
   flex-direction: column;
-  // background-color: red;
-  // padding: -200px;
-  // margin-top: 100px;
+ 
   
   .modal {
     display: flex;
     flex-direction: column;
     gap: 50px;
     // justify-content: space-between;
-    background-color: #eaf0ea;
+    background-color: #a4a2ee;
     width: 100vh;
     height: 80vh;
     margin-top: 10vh;
-    margin-left: 300px;
+    margin-left: 400px;
     // border: 2px solid red;
     // width: 50%;
     // height: 50%;
@@ -137,7 +135,7 @@ tbody{
       justify-content: space-around;
       // margin: 0px 10px 0px 10px;
       padding-top: 10px;
-      border: 1px solid blue;
+      // border: 1px solid blue;
       width: 100%;
      .img-del-edit{
       display: flex;
@@ -170,14 +168,18 @@ gap: 20px;
     .employee-detail{
       display: flex;
       flex-direction: column;
-      border: 2px solid aqua;
+      // border: 2px solid aqua;
       gap: 20px;
       width: 45%;
       
     }
     .employee-inputs{
-      font-size: 18px;
-      gap: 20px;
+      font-size: 20px;
+      gap: 50px;
+      // font-weight: bolder;
+      strong{
+        font-weight: bolder;
+      }
     }
   }
 }
