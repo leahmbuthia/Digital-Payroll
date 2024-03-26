@@ -42,22 +42,20 @@ const DashboardLeft = (employee) => {
       <div className="leah">
         <div className="topper">
           <div className="tit">
-            <h2 className="title">Profile Details</h2>
-          </div>
-          <div className="details-img">
+            <img src={Avator} alt="" />
+            <h2> Profile Details</h2>
             <img src={edit} alt="" onClick={() => handleEdit(employee)} />
           </div>
         </div>
-        <div className="profile">
+        
           {loggedInUser && (
-            <div className="profile-details list" key={loggedInUser.EmployeeID}>
-              <img src={Avator} alt="Avatar" />
-              <div className="modal-Details">
+            
+              <div className="modal-Details" key={loggedInUser.EmployeeID}>
                 <div className="first-details">
                   <div className="employee-inputs">
                     <strong>Employee ID:</strong> {loggedInUser.EmployeeID}
                   </div>
-                  <div>
+                  <div className="employee-inputs">
                     <strong>FirstName:</strong> {loggedInUser.FirstName}
                   </div>
                   <div className="employee-inputs">
@@ -86,14 +84,14 @@ const DashboardLeft = (employee) => {
                   <div className="employee-inputs">
                     <strong>Schedule:</strong> {loggedInUser.Schedule}
                   </div>
-                  <div className="employee-inputs">
+                  {/* <div className="employee-inputs">
                     <strong>Role:</strong> {loggedInUser.Role}
-                  </div>
+                  </div> */}
                 </div>
               </div>
-            </div>
+            
           )}
-        </div>
+        
       </div>
       <div className="modal-container">
         {

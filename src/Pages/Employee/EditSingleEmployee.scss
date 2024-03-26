@@ -1,0 +1,123 @@
+// UpdateEmployeeModal.scss
+
+.modal {
+    background-color: rgba(0, 0, 0, 0.5); // Semi-transparent background
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    // width: 50%;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  
+    .header33 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+    //   width: 100%;
+      background-color: #ccc;
+      gap: 20px;
+      width: 500px;
+      border-bottom: 1px solid #ccc;
+      border-radius: 10px;
+  
+      .close-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 8px 12px;
+        cursor: pointer;
+      }
+    }
+ 
+  
+    .form {
+      background-color: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 500px;
+  
+      .form-inputs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        // border: 2px solid ;
+  .first1{
+// border: 2px solid blue;
+width: 100%;
+.credential-item{
+    // border: 2px solid red;
+    width: 100%;
+}
+  }
+     
+      }
+  
+      label {
+        font-weight: bold;
+      }
+  
+      input,
+      select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+  
+      .credentials-container {
+        margin-top: 20px;
+  
+        .credentials-section {
+          margin-bottom: 10px;
+  
+      
+        }
+  
+        .more {
+          .credential-item {
+            margin-bottom: 10px;
+  
+            label {
+              font-weight: bold;
+            }
+  
+            input {
+              width: 100%;
+              padding: 8px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+            }
+          }
+  
+          button[type="submit"] {
+            width: 30%;
+            padding: 10px ;
+          //   padding-left: 65px;
+          align-self: center;
+            border: none;
+            background-color: #2a277a;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 1s;
+            border-radius: 10px;
+            
+    
+            &:hover{
+              background-color: blue;
+            }
+         
+          }
+        }
+      }
+    }
+  }
+  
