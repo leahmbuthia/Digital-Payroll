@@ -1,20 +1,24 @@
 .add-main {
-  display: flex;
+  // display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 80vw;
 
   .cont {
     background-color: #f2f2f2;
     padding: 20px;
+    height: 90vh;
     border-radius: 10px;
 
     h2 {
       text-align: center;
+      // font-size: 20px;
     }
 
     .add-form {
       margin-top: 20px;
+      
 
       form {
         .form-inputs {
@@ -38,8 +42,8 @@
 
               input,
               select {
-                width: 100%;
-                padding: 8px;
+                width: 60%;
+                padding: 10px;
                 border-radius: 5px;
                 border: 1px solid #ccc;
               }
@@ -54,12 +58,14 @@
           }
 
           .credentials-container {
-            width: calc(50% - 10px);
+            width: calc(50% - 20px);
             margin-bottom: 10px;
 
             .credentials-section {
               .credential-item {
                 margin-bottom: 10px;
+                width: 60%;
+                gap: 20px;
 
                 label {
                   display: block;
@@ -78,25 +84,44 @@
             .more {
               .credential-item {
                 margin-bottom: 10px;
+                width: 60%;
+                gap: 20px;
+              }
+              label {
+                display: block;
+                margin-bottom: 5px;
+              }
+
+              input {
+                width: 100%;
+                padding: 8px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
               }
             }
           }
         }
 
         button[type='submit'] {
-          width: 100%;
-          padding: 10px;
-          background-color: #007bff;
-          color: #fff;
-          border: none;
-          border-radius: 5px;
-          cursor: pointer;
-          transition: background-color 0.3s ease;
+         display: flex;
+         justify-content: center; 
+        width: 20%;
+        padding: 10px ;
+        align-self: center;
+        border: none;
+        background-color: #2a277a;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 1s;
+        border-radius: 10px;
+        
 
-          &:hover {
-            background-color: #0056b3;
-          }
+        &:hover{
+          background-color: blue;
         }
+     
+      }
       }
     }
   }

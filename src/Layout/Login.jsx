@@ -82,7 +82,7 @@ const Login = () => {
               {/* <button type="button" onClick={forgotPassword}>Reset Password</button> */}
               <input type="password" placeholder='Enter your password' value={values.Password} onChange={(e) => setValues({ ...values, Password: e.target.value })} />
             </div>
-            <div className="btn">
+            <div className="btn33">
               <button type="submit">Login</button>
             </div>
           </form>

@@ -89,8 +89,9 @@ const AdminSchedule = () => {
   return (
     <div className="schedule-container1">
       <div className="h2">
-        <button onClick={toggleModal}>Add Schedule</button>
+        
         <h2>Schedule Details</h2>
+        <button onClick={toggleModal}>Add Schedule</button>
       </div>
       <table className="schedule-table">
         <thead>
@@ -130,7 +131,7 @@ const AdminSchedule = () => {
       {showModal && (
         <div className="modal">
           <div className="modal-content">
-            <span className="close" onClick={toggleModal}>&times;</span>
+            <span className="close" onClick={toggleModal} style={{color:'red', padding:'25px', fontSize:'30px'}}>&times;</span>
             <h2>Add Schedule</h2>
             <form onSubmit={handleSubmit}>
               <div className="form-group">

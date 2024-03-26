@@ -80,6 +80,7 @@ const AdminPayroll = () => {
             <ToasterContainer />
             <div className="FilterByPayroll">
               <div className='FilterSelection'>
+                <h2>Employee Payroll Details</h2>
                 <label htmlFor="filter">Filter By:</label>
                 <select id="filter" name="filter" value={selectedFilter} onChange={handleFilterChange}>
                   <option value="">Select Filter</option>
@@ -157,7 +158,10 @@ const AdminPayroll = () => {
               </thead>
               <tbody>
                 {data?.payroll.map((payroll) => (
-                  <tr key={payroll.PayrollID}>
+                  <tr key={payroll.PayrollID}style={{ backgroundColor: (selectedFilter === 'FirstName'
+                  && payroll.FirstName === selectedValue) || (selectedFilter === 'PayrollDate'
+                   && payroll.PayrollDate === selectedValue) || (selectedFilter === 'EmployeeID' 
+                   && parseInt(payroll.EmployeeID) === parseInt(selectedValue)) ? 'yellow' : 'transparent' }}>
                     <td>{payroll.EmployeeID}</td>
                     <td>{payroll.FirstName}</td>
                     <td>{payroll.GrossPay}</td>

@@ -212,8 +212,9 @@ const Add = () => {
                   </div>
                 </div>
               </div>
+              <button type="submit">Submit</button>
             </div>
-            <button type="submit">Submit</button>
+           
           </form>
         </div>
       </div>

@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { useAddPayrollMutation } from '../../../features/payroll/payrollApi';
 import { ErrorToast, SuccessToast } from '../../../Toaster';
+import './AddPayroll.scss';
 
 const AddPayroll = ({ onClose }) => {
   const [addPayroll, { isLoading }] = useAddPayrollMutation();
@@ -41,6 +42,7 @@ const AddPayroll = ({ onClose }) => {
     <div className="modal">
       <section className="modal-content">
         <h2>Add a New Payroll</h2>
+        <button className="close-button" onClick={onClose}>Close</button>
         <form onSubmit={handleSubmit} className="form">
           <label className="form-input" htmlFor="EmployeeID">
             EmployeeID:

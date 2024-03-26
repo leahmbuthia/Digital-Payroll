@@ -11,11 +11,21 @@
   }
   
   .FilterSelection label {
-    margin-right: 18px;
+    margin-right: 20px;
+    font-size: 24px;
+    width: 100px;
   }
-//   .select{
-//     width: 50px;
-//   }
+   .FilterSelection select{
+    width: 510px;
+    height: 30px;
+    border-radius: 5px;
+    .FilterSelection option{
+      width: 400px;
+      height: 30px;
+      border-radius: 5px;
+    }
+  }
+  
   
   .SearchByFilterValue {
     margin-bottom: 10px;

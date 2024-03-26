@@ -3,8 +3,10 @@ import { NavLink } from 'react-router-dom';
 import dashboard from '../../../assets/calendar.png'
 import Attendance from '../../../assets/briefcase.png'
 import Payroll from '../../../assets/Group.png'
+// import dash from '../../../assets/dash.png'
 import Schedule from '../../../assets/layout-grid.png'
 import { MdDelete } from "react-icons/md";
+import { RiDashboardLine } from "react-icons/ri";
 import './AdminSideMenu.scss'
 
 
