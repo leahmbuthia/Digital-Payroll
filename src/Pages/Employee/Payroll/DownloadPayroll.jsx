@@ -66,7 +66,7 @@ const DownloadPayroll = ({ payrollID, onClose, isLoading }) => {
         <div className="modal">
           <div className="modal-content">
             <button className="close" onClick={closeModal}>X</button>
-            <button onClick={() => generatePDF(payroll)}>Print</button>
+            <button onClick={() => generatePDF(payroll)}>Download</button>
             <div className='payslip'>
               <h2>THappy Payroll Day Payslip</h2>
               {/* <div className="empDetails"> */}

@@ -1,6 +1,7 @@
 .container {
     display: flex;
     flex-direction: column;
+    background-color: #eeeee4;
     height: 95vh;
     width: 80vw;
   .main{
@@ -41,17 +42,22 @@
 }
   
   .button {
-    padding: 10px 20px;
-    background-color: #007bff;
-    color: #fff;
+    width: 30%;
+    padding: 10px ;
+  //   padding-left: 65px;
+  align-self: center;
     border: none;
-    border-radius: 5px;
+    background-color: #2a277a;
+    color: white;
+    font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
+    transition: 1s;
+    border-radius: 10px;
+    
+
+    &:hover{
+      background-color: blue;
+    }
   }
   
   .net-salary {
@@ -62,5 +68,25 @@
   .external{
     display: flex;
     flex-direction: column;
+  }
+  td{
+    button{
+      width: 60%;
+      padding: 10px ;
+    //   padding-left: 65px;
+    align-self: center;
+      border: none;
+      background-color: #2a277a;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 1s;
+      border-radius: 10px;
+      
+  
+      &:hover{
+        background-color: blue;
+      }
+    }
   }
 }  

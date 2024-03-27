@@ -17,7 +17,7 @@ const Add = () => {
     Position: "",
     Password: "",
     Schedule: "",
-    PhotoUrl: "",
+    PhotoUrl: "", // Added for storing the URL of the uploaded image
     Role: "",
   });
 
@@ -52,7 +52,7 @@ const Add = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     // Check if any form field is empty
     for (const key in formData) {
       if (formData[key] === "") {
@@ -60,10 +60,10 @@ const Add = () => {
         return; // Stop submission if any field is empty
       }
     }
-  
+
     try {
       const response = await addEmployee(formData);
-  
+
       if (!response.error) {
         console.log("Employee added successfully:", response.data);
         navigate("/admin");

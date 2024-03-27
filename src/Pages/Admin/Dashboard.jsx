@@ -125,6 +125,7 @@ const Dashboard = () => {
                   <td>{employee.EmployeeID}</td>
                   <td>{employee.Email}</td>
                   <td>{employee.Position}</td>
+                  {/* <td>{employee.PhotoUrl}</td> */}
                   <td>
                     <button onClick={() => handleSeeMore(employee.EmployeeID)}>
                       See More

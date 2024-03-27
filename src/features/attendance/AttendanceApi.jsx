@@ -11,7 +11,7 @@ export const attendanceApi = createApi({
     }),
 
     getAttendance: builder.query({
-      query: (attendance) => `attendance/$AttendanceID`,
+      query: (attendance) => `attendance/employee/$EmployeeID`,
       providesTags: ["Attendance"],
     }),
     getDateAttendance: builder.query({

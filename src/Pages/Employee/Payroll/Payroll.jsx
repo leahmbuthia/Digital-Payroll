@@ -92,17 +92,15 @@ const Payroll = () => {
 
   return (
     <div className="container">
-      {/* <div className="main">
+       <div className="main">
         <div className="input-field">
           <h2>Your Pay Details</h2>
          
         </div>
-        <div className="net-salary">
-         
-        </div>
-        <button className='button' onClick={handleDownloadPayslip}>Download Payslip</button>
-      </div> */}
-         <button className="button" onClick={() => handlepay(payroll.PayrollID)} >Download Payslip</button>
+      
+        {/* <button className='button' onClick={handleDownloadPayslip}>Download Payslip</button> */}
+      </div>
+         {/* <button className="button" onClick={() => handlepay(payroll.PayrollID)} >Download Payslip</button> */}
     
       {/* Render PayrollDetails modal */}
     

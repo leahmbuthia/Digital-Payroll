@@ -1,74 +1,60 @@
-import React from 'react'
-import { useGetEmployeeQuery, useUpdateEmployeeMutation } from '../../features/employee/employeeApi'
-import { useState, useEffect } from 'react';
-import './EditSingleEmployee.scss'
-
+import React, { useState } from 'react';
+import { useUpdateEmployeeMutation } from '../../features/employee/employeeApi';
+import './EditSingleEmployee.scss';
 
 const EditSingleEmployee = ({ setShowModal, employee }) => {
-  const user=JSON.parse(localStorage.getItem('loggedInEmployee'))
-  // console.log("user",user);
-    const [updateEmployee, { isLoading }] = useUpdateEmployeeMutation(employee.EmployeeID);
-    // const [loggedInUser, setLoggedInUser] = useState(null);
-   
-  
-    // const { data: employeeData, error,  refetch } = useGetEmployeeQuery(formattedLoggedInUser);
-    // useEffect(() => {
-    //   // Retrieve logged-in employee data from local storage
-    //   const loggedInEmployeeData = JSON.parse(
-    //     localStorage.getItem("loggedInEmployee")
-    //   );
-    //   if (loggedInEmployeeData) {
-    //     setLoggedInUser(loggedInEmployeeData);
-    //   }
-    //   console.log(loggedInEmployeeData);
-    // }, []);
- 
-  
-    const [formData, setFormData] = useState({
-      EmployeeID: employee.EmployeeID,
-      FirstName: '' || employee.FirstName,
+  const user = JSON.parse(localStorage.getItem('loggedInEmployee'));
+  const [updateEmployee, { isLoading }] = useUpdateEmployeeMutation(user.EmployeeID);
+  const [formData, setFormData] = useState({
+    EmployeeID: user.EmployeeID,
+    FirstName: '',
+    LastName: '',
+    Address: '',
+    Email: '',
+    PhoneNo: '',
+    Gender: '',
+    Password: '',
+  });
+
+  // Update formData state when the employee prop changes
+  React.useEffect(() => {
+    setFormData({
+      ...formData,
+      FirstName: employee.FirstName,
       LastName: employee.LastName,
       Address: employee.Address,
-    DOB: employee.DOB,
-    Email: employee.Email,
-    PhoneNo: employee.PhoneNo,
-    Gender: employee.Gender,
-    Password: employee.Password,
-    Position: employee.Position,
-    Schedule: employee.Schedule,
+      Email: employee.Email,
+      PhoneNo: employee.PhoneNo,
+      Gender: employee.Gender,
+      Password: employee.Password,
     });
-  
-    // useEffect(() => {
-    //   if (employeeData) {
-    //     const employee = employeeData;
-    //     setFormData(employee);
-    //   }
-    // }, [employeeData]);
-  
-    const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData((prevFormData) => ({
-        ...prevFormData,
-        [name]: value,
-      }));
-    };
-    
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const response = await updateEmployee(formData).unwrap();
-        console.log("Employee updated:", response);
-        // Add success handling here
-      } catch (error) {
-        console.error("Error updating employee:", error);
-        // Handle error, show error message, etc.
-      }
-    };
-  
-    const handleClose = () => {
-      setShowModal(false);
-    };
+  }, [employee]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await updateEmployee(formData).unwrap();
+      console.log("Employee updated:", response);
+      // Assuming response contains updated employee details
+      // You can update the employee prop with the updated details
+      // Assuming response contains the updated employee details
+      setShowModal(false); // Close modal after successful update
+    } catch (error) {
+      console.error("Error updating employee:", error);
+    }
+  };
+
+  const handleClose = () => {
+    setShowModal(false);
+  };
   return (
     <div className="modal">
       <div className="header33">
@@ -96,10 +82,10 @@ const EditSingleEmployee = ({ setShowModal, employee }) => {
               <label htmlFor="Address">Address:</label>
               <input type="text" id="Address" name="Address" defaultValue={employee.Address} onChange={ (e) => handleChange (e)}  />
             </div>
-            <div className="credential-item">
+            {/* <div className="credential-item">
               <label htmlFor="DOB">Date of Birth:</label>
               <input type="date" id="DOB" name="DOB" defaultValue={employee.DOB} onChange={ (e) => handleChange (e)}  />
-            </div>
+            </div> */}
             {/* <div>
               <label htmlFor="Email">Email:</label>
               <input type="Email" id="Email" name="Email" defaultValue={formData.Email} onChange={ (e) => handleChange (e)} />
@@ -125,14 +111,14 @@ const EditSingleEmployee = ({ setShowModal, employee }) => {
           </div>
           <div className="more">
          
-            <div className="credential-item">
+            {/* <div className="credential-item">
               <label>Schedule</label>
               <input type="text" id='Schedule' name='Schedule' defaultValue={employee.Schedule} onChange={ (e) => handleChange (e)} />
-            </div>
-            <div className="credential-item">
+            </div> */}
+            {/* <div className="credential-item">
               <label>Position</label>
               <input type="text" id='Position' name='Position' defaultValue={employee.Position} onChange={ (e) => handleChange (e)} />
-            </div>
+            </div> */}
             <button type="submit">{isLoading ? 'Loading' : 'Save Post'}</button>
             {/* <div className="credential-item">
               <label>Role</label>
