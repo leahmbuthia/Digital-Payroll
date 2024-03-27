@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Attendance.scss";
 import WorkHours from "./WorkHours";
-import { useAddAttendanceMutation, useUpdateAttendanceMutation } from "../../../features/attendance/AttendanceApi";
+import { useAddAttendanceMutation, useUpdateAttendanceMutation, useGetAttendanceQuery } from "../../../features/attendance/AttendanceApi";
 import { ErrorToast, SuccessToast, ToasterContainer } from "../../../Toaster";
 
 const Attendance = () => {
@@ -13,9 +13,16 @@ const Attendance = () => {
   const [totalDays, setTotalDays] = useState(0);
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [addAttendance] = useAddAttendanceMutation();
+  // const [attendanceId, setAttendanceId] = useState(null);
   const [updateAttendance] = useUpdateAttendanceMutation();
   const [EmployeeID, setEmployeeID] = useState(null); // Initialize EmployeeID with null
   const [lastStopTime, setLastStopTime] = useState(null);
+  // const { data: attendanceData, error: attendanceError, isLoading: attendanceLoading } = useGetAttendanceQuery();
+
+  
+  const loggedInUser = localStorage.getItem('loggedInEmployee');
+  const formattedLoggedInUser = JSON.parse(loggedInUser);
+  const { data: AttendanceDetails, error, isLoading } = useGetAttendanceQuery(formattedLoggedInUser);
 
   useEffect(() => {
     const loggedInEmployeeData = JSON.parse(localStorage.getItem("loggedInEmployee"));
@@ -88,6 +95,43 @@ const Attendance = () => {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+  };
+
+  const renderAttendanceTable = () => {
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    }
+
+    if (!AttendanceDetails || !AttendanceDetails.length === 0) {
+      return <div>No attendance data available.</div>;
+    }
+
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Day of the Week</th>
+            <th>Time In</th>
+            <th>Time Out</th>
+          </tr>
+        </thead>
+        <tbody>
+          {AttendanceDetails.map((attendance) => (
+            <tr key={attendance.AttendanceID}>
+              <td>{new Date(attendance.CreatedDate).toLocaleDateString()}</td>
+              <td>{new Date(attendance.TimeIn).toLocaleDateString("en-US", { weekday: 'long' })}</td>
+              <td>{new Date(attendance.TimeOut).toLocaleTimeString()}</td>
+              <td>{attendance.timeOut ? new Date(attendance.timeOut).toLocaleTimeString() : "-"}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
   };
 
   return (

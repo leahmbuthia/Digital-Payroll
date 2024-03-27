@@ -5,26 +5,41 @@ import LeaveApplication from './LeaveApplication';
 import { useGetPayrollQuery } from '../../../features/payroll/payrollApi'; // Import the generated API hook
 import PayrollDetails from '../../Admin/Payroll/PayrollDetails';
 import DownloadPayroll from './DownloadPayroll';
+import RotateLoader from "react-spinners/RotateLoader";
 
 
 const Payroll = () => {
   const [payrollId, setPayrollId] = useState(null);
   const [employeeId, setEmployeeId] = useState(null);
-  const [showPayrollModal, setShowPayrollModal] = useState(false); // State to control modal visibility
+  const [showModal, setShowModal] = useState(false); // State to control modal visibility
 
   const loggedInUser = localStorage.getItem('loggedInEmployee');
   const formattedLoggedInUser = JSON.parse(loggedInUser);
   const { data: payrollDetails, error, isLoading } = useGetPayrollQuery(formattedLoggedInUser);
 
-  const handleDownloadPayslip = () => {
-    // Open the payroll details modal
-    setShowPayrollModal(true);
+  // const handleDownloadPayslip = () => {
+  //   // Open the payroll details modal
+  //   setShowPayrollModal(true);
+  // };
+  const handleModalClose = () => {
+    setShowModal(false);
+  };
+  const handleDownloadPayslip = (payrollId) => {
+    setPayrollId(payrollId);
+    setShowModal(true); // Set showModal to true when the button is clicked
+  };
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1; // Adding 1 since getMonth() returns zero-based month
+    const day = date.getDate();
+    return `${year}-${month}-${day}`;
   };
 
-  const handleCloseModal = () => {
-    // Close the payroll details modal
-    setShowPayrollModal(false);
-  };
+  // const handleCloseModal = () => {
+  //   // Close the payroll details modal
+  //   setShowPayrollModal(false);
+  // };
   const renderPayrollTable = () => {
     if (isLoading) {
       return <div>Loading...</div>;
@@ -65,7 +80,10 @@ const Payroll = () => {
             <td>{payroll.TotalDeductions}</td>
             <td>{payroll.GrossPay}</td>
             <td>{payroll.NetPay}</td>
-            <td>{payroll.PayrollDate}</td>
+            <td>{formatDate(payroll.PayrollDate)}</td> {/* Format date here */}
+            <td>
+              <button onClick={() => handleDownloadPayslip(payroll.PayrollID)} >Download Payslip</button>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -84,7 +102,7 @@ const Payroll = () => {
         </div>
         <button className='button' onClick={handleDownloadPayslip}>Download Payslip</button>
       </div> */}
-         <button className="button" onClick={handleDownloadPayslip}>Download Payslip</button>
+         <button className="button" onClick={() => handlepay(payroll.PayrollID)} >Download Payslip</button>
     
       {/* Render PayrollDetails modal */}
     
@@ -95,14 +113,13 @@ const Payroll = () => {
         <div className="schedule">
           <Schedule/>
         </div>
-        <div className="leave">
-          <LeaveApplication/>
-        </div>
+       
       </div>
-      {showPayrollModal && (
+      {showModal && (
         <DownloadPayroll
-          payrollID={payrollDetails?.payroll?.PayrollID} 
-          onClose={handleCloseModal} 
+          payrollID={payrollId} // Pass the payrollId to the DownloadPayroll component
+          onClose={() => setShowModal(false)} // Close modal when needed
+          showModal={showModal}
           isLoading={isLoading} 
         />
       )}
